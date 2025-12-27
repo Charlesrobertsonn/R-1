@@ -55,6 +55,7 @@ a[href*="index.html"]:hover {
   padding: 28px 20px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 320px; /* 👈 optional polish */
 }
 
 .feature-item:hover {
