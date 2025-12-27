@@ -1,1 +1,101 @@
+/* ===== Base ===== */
+body {
+  background-color: #ffffff;
+  color: #1f2933;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Page Wrapper ===== */
+.features-section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* ===== Headings ===== */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 40px;
+}
+
+/* ===== Back link ===== */
+a[href*="index.html"] {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a[href*="index.html"]:hover {
+  text-decoration: underline;
+}
+
+/* ===== Level Cards ===== */
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Card */
+.feature-item {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 28px 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+/* Clickable card */
+.feature-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Level title */
+.feature-link strong,
+.feature-link {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* Subtext */
+.feature-subtext {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+/* ===== Disabled / Coming Soon ===== */
+.feature-item span.feature-link {
+  cursor: not-allowed;
+  color: #9ca3af;
+}
+
+.feature-item span .feature-subtext {
+  color: #9ca3af;
+}
+.feature-item {
+  cursor: pointer;
+}
+
+.feature-link {
+  width: 100%;
+}
 
