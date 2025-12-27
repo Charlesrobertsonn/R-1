@@ -1,79 +1,93 @@
-/* ===== Base Page Styling ===== */
+/* ===== Base ===== */
 body {
-  background-color: #2c3e50;
-  color: white;
+  background-color: #ffffff;
+  color: #1f2933;
   font-family: Arial, sans-serif;
-  text-align: center;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
+/* ===== Page Wrapper ===== */
+.features-section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* ===== Headings ===== */
 h1 {
-  margin-top: 50px;
-  font-size: 2.5em;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
-h2 {
-  margin-top: 30px;
-  font-size: 2em;
+p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 40px;
+}
+
+/* ===== Back link ===== */
+a[href*="index.html"] {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a[href*="index.html"]:hover {
   text-decoration: underline;
 }
 
-/* ===== Layout ===== */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
+/* ===== Level Cards ===== */
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 
-/* ===== Buttons ===== */
-.button {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: none;
-  padding: 10px 30px;
-  font-size: 1.2em;
-  border-radius: 20px;
-  margin: 10px 0;
-  cursor: pointer;
-  transition: 0.3s;
+/* Card */
+.feature-item {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 28px 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+/* Clickable card */
+.feature-link {
   text-decoration: none;
-  display: inline-block;
+  color: inherit;
+  display: block;
 }
 
-.button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+/* Level title */
+.feature-link strong,
+.feature-link {
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
-/* ===== Floating Images ===== */
-.floating-image {
-  position: absolute;
-  width: 100px;
+/* Subtext */
+.feature-subtext {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #6b7280;
 }
 
-.floating-image.left {
-  left: -100px;
-  top: 20%;
-  animation: float-left 8s linear infinite;
+/* ===== Disabled / Coming Soon ===== */
+.feature-item span.feature-link {
+  cursor: not-allowed;
+  color: #9ca3af;
 }
 
-.floating-image.right {
-  right: -100px;
-  top: 60%;
-  animation: float-right 10s linear infinite;
-}
-
-/* ===== Animations ===== */
-@keyframes float-left {
-  0% { left: -100px; }
-  50% { left: 20px; }
-  100% { left: -100px; }
-}
-
-@keyframes float-right {
-  0% { right: -100px; }
-  50% { right: 20px; }
-  100% { right: -100px; }
+.feature-item span .feature-subtext {
+  color: #9ca3af;
 }
