@@ -198,6 +198,10 @@
             <p id="syllable-result" class="result"></p>
         </section>
     </main>
+    
+<div style="margin-top: 30px; text-align: center;">
+  <button class="check-btn" onclick="finishLevel()">Finish Level 1</button>
+</div>
 
     <script>
         // Function to check if the syllabication is correct
@@ -238,6 +242,10 @@
                 readWord(wordElement.textContent);
             });
         });
+        function finishLevel() {
+  window.location.href = "index.html";
+}
+
     </script>
 </body>
 </html>
