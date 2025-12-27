@@ -82,6 +82,9 @@
         <h2>Sentences</h2>
         <div class="sentence-list" id="sentenceList"></div>
     </div>
+<div style="margin-top: 30px; text-align: center;">
+  <button class="check-btn" onclick="goNext()">Continue</button>
+</div>
 
     <script>
         let stopwatchInterval;
@@ -155,6 +158,11 @@
                 list.appendChild(div);
             });
         }
+
+        function goNext() {
+  window.location.href = "spell-bound.html";
+}
+
 
         populateList(document.getElementById('wordList'), words, 'word');
         populateList(document.getElementById('sentenceList'), sentences.map(sentence => ({ word: sentence, phonemes: '' })), 'sentence');
