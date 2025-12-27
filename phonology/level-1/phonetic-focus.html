@@ -213,6 +213,9 @@
             <p id="spelling-result" class="result"></p>
         </div>
     </div>
+<div style="margin-top: 30px; text-align: center;">
+  <button class="check-btn" onclick="goNext()">Continue</button>
+</div>
 
     <script>
         const words = ["cat", "bat", "map", "van", "jam", "wax", "rat", "bag", "tag", "lap"];
@@ -271,6 +274,10 @@
                 feedback.style.color = userInput === word ? "green" : "red";
             });
         }
+        
+function goNext() {
+  window.location.href = "read-spell-focus.html";
+}
 
         generateWordList();
         generateSpellingList();
