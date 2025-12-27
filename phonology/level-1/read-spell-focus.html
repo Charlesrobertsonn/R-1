@@ -132,6 +132,10 @@
 
         <p id="result-message" class="result"></p>
     </div>
+    
+<div style="margin-top: 30px; text-align: center;">
+  <button class="check-btn" onclick="goNext()">Continue</button>
+</div>
 
     <script>
         const words = [
@@ -213,6 +217,10 @@
                 event.target.style.border = "1px solid #ccc";
             }
         });
+
+        function goNext() {
+  window.location.href = "syllabication.html";
+}
 
         // Initialize the grid
         generateReadingWords();
