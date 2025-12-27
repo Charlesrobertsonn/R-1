@@ -120,6 +120,9 @@
                 <div class="draggable" draggable="true" data-word="street">street</div>
             </div>
         </div>
+<div style="margin-top: 30px; text-align: center;">
+  <button class="check-btn" onclick="goNext()">Continue</button>
+</div>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -207,6 +210,11 @@
                 window.checkSentence = checkSentence;
                 window.nextTask = nextTask;
                 window.showHint = showHint;
+
+                function goNext() {
+  window.location.href = "comic2.html";
+}
+
             });
         </script>
     <h2><strong>Write the Sentences</strong></h2>
