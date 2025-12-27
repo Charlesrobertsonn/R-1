@@ -1,0 +1,86 @@
+/* ---------- Base reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+/* ---------- Page background ---------- */
+body {
+  background-color: #2f4356;
+  color: white;
+  min-height: 100vh;
+}
+
+/* ---------- Main hub container ---------- */
+.lesson-hub {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* ---------- Back / Home link ---------- */
+.lesson-hub a.back-link {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: #cfe6ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.lesson-hub a.back-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Headings ---------- */
+.lesson-hub h1 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+.lesson-hub p {
+  margin-bottom: 40px;
+  opacity: 0.85;
+}
+
+/* ---------- Button list ---------- */
+.lesson-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ---------- Lesson buttons ---------- */
+.lesson-button {
+  width: 260px;
+  padding: 16px;
+  background-color: #5b6f82;
+  border-radius: 999px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.lesson-button:hover {
+  background-color: #6f879c;
+  transform: translateY(-2px);
+}
+
+/* ---------- Disabled / coming soon ---------- */
+.lesson-button.disabled {
+  background-color: #445564;
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------- Optional section title ---------- */
+.section-title {
+  margin: 50px 0 20px;
+  font-size: 1.6rem;
+  text-decoration: underline;
+}
