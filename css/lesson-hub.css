@@ -42,8 +42,9 @@ a[href*="index.html"]:hover {
 
 /* ===== Level Cards ===== */
 .features-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-direction: column;   /* 👈 vertical stack */
+  align-items: center;      /* center cards */
   gap: 24px;
 }
 
