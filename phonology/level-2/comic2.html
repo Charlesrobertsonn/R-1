@@ -193,6 +193,8 @@
       const comicGrid = document.getElementById("comic-grid");
       const pageNumber = document.getElementById("page-number");
       const quizSection = document.getElementById("quiz-section");
+      const finishBtn = document.getElementById("finishBtn");
+
 
       comicGrid.innerHTML = "";
 
@@ -212,8 +214,10 @@
 
       pageNumber.textContent = `Page ${currentPage + 1} of ${comicPages.length}`;
 
-      // Show quiz on the last page
-      quizSection.style.display = (currentPage === comicPages.length - 1) ? "block" : "none";
+      const isLastPage = currentPage === comicPages.length - 1;
+
+quizSection.style.display = isLastPage ? "block" : "none";
+finishBtn.style.display = isLastPage ? "inline-block" : "none"; // ✅ NEW
     }
 
     function speakText(text) {
