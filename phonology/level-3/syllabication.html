@@ -166,7 +166,8 @@
 
 <body>
   <nav class="activity-nav">
-    <a href="./index.html">← Back to Level 1</a>
+    <!-- ✅ Fix label (you’re in level-3) -->
+    <a href="./index.html">← Back to Level 3</a>
   </nav>
 
   <header>
@@ -263,7 +264,8 @@
       </div>
 
       <div class="finish-container">
-        <button class="check-btn" onclick="finishsyllabication()">Finish Syllabication</button>
+        <!-- ✅ Fix: call the correct function name -->
+        <button type="button" class="check-btn" onclick="finishSyllabication()">Finish Syllabication</button>
       </div>
 
     </section>
@@ -345,10 +347,11 @@
       wordEl.addEventListener("click", () => readWord(wordEl.textContent));
     });
 
-    // --- Finish button ---
-    function finishLevel() {
+    // --- Finish button (✅ goes to level-3/index.html) ---
+    function finishSyllabication() {
       window.location.href = "index.html";
     }
   </script>
 </body>
 </html>
+
