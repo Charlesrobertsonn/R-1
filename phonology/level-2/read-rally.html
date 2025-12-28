@@ -22,12 +22,27 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
         h1, h2 { color: #333; }
-        .word-list, .sentence-list {
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .sentence-list {
             text-align: left;
             margin: 20px auto;
             max-width: 600px;
         }
-        .word, .sentence {
+        .word {
+            padding: 12px;
+            background: #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 18px;
+        }
+        .sentence {
             padding: 10px;
             background: #ddd;
             border-radius: 5px;
