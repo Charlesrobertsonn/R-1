@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -45,13 +45,12 @@
       text-align: center;
     }
 
-    /* Big letter as a pressable grey button */
+    /* Big letter button */
     .letter {
       font-size: 120px;
       font-weight: 600;
       margin: 20px auto;
       color: #333;
-      text-align: center;
       text-transform: lowercase;
 
       background: #e0e0e0;
@@ -71,7 +70,7 @@
 
     .letter:focus {
       outline: none;
-      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.2);
     }
 
     .prev, .next {
@@ -84,8 +83,6 @@
       background: rgba(0, 0, 0, 0.5);
       color: white;
       border: none;
-      user-select: none;
-      outline: none;
       border-radius: 6px;
     }
 
@@ -113,6 +110,32 @@
     .active, .dot:hover {
       background-color: #717171;
     }
+
+    /* Continue button */
+    .continue-container {
+      margin-top: 30px;
+      display: none; /* ✅ hidden by default */
+    }
+
+    .continue-btn {
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: 600;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.2s ease;
+    }
+
+    .continue-btn:hover {
+      background: #43a047;
+    }
+
+    .continue-btn:active {
+      transform: translateY(2px);
+    }
   </style>
 </head>
 
@@ -126,38 +149,22 @@
 
     <div class="slideshow-container">
 
-      <!-- Slides (NO images, NO small caption) -->
-      <div class="slide" data-sound="sounds/s.mp3">
-        <button class="letter" type="button" aria-label="Play sound for s">s</button>
-      </div>
+      <!-- Slides -->
+      <div class="slide" data-sound="sounds/s.mp3"><button class="letter">s</button></div>
+      <div class="slide" data-sound="sounds/m.mp3"><button class="letter">m</button></div>
+      <div class="slide" data-sound="sounds/n.mp3"><button class="letter">n</button></div>
+      <div class="slide" data-sound="sounds/f.mp3"><button class="letter">f</button></div>
+      <div class="slide" data-sound="sounds/t.mp3"><button class="letter">t</button></div>
+      <div class="slide" data-sound="sounds/a.mp3"><button class="letter">a</button></div>
 
-      <div class="slide" data-sound="sounds/m.mp3">
-        <button class="letter" type="button" aria-label="Play sound for m">m</button>
-      </div>
-
-      <div class="slide" data-sound="sounds/n.mp3">
-        <button class="letter" type="button" aria-label="Play sound for n">n</button>
-      </div>
-
-      <div class="slide" data-sound="sounds/f.mp3">
-        <button class="letter" type="button" aria-label="Play sound for f">f</button>
-      </div>
-
-      <div class="slide" data-sound="sounds/t.mp3">
-        <button class="letter" type="button" aria-label="Play sound for t">t</button>
-      </div>
-
-      <div class="slide" data-sound="sounds/a.mp3">
-        <button class="letter" type="button" aria-label="Play sound for a">a</button>
-      </div>
-
+      <!-- LAST SLIDE -->
       <div class="slide" data-sound="sounds/bat.mp3">
-        <button class="letter" type="button" aria-label="Play sound for bat">bat</button>
+        <button class="letter">bat</button>
       </div>
 
       <!-- Navigation -->
-      <button class="prev" aria-label="Previous sound" onclick="changeSlide(-1)">&#10094;</button>
-      <button class="next" aria-label="Next sound" onclick="changeSlide(1)">&#10095;</button>
+      <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+      <button class="next" onclick="changeSlide(1)">&#10095;</button>
 
       <!-- Dots -->
       <div class="dots-container">
@@ -170,66 +177,67 @@
         <span class="dot" onclick="currentSlide(7)"></span>
       </div>
 
+      <!-- Continue (only shows on last slide) -->
+      <div class="continue-container" id="continueContainer">
+        <button class="continue-btn" onclick="goToNext()">
+          Continue to Spelling Practice
+        </button>
+      </div>
+
     </div>
   </main>
 
-
-  <!-- Shared audio element -->
   <audio id="slideAudio" preload="auto"></audio>
 
   <script>
     let slideIndex = 0;
-
     const audioEl = document.getElementById("slideAudio");
+    const continueContainer = document.getElementById("continueContainer");
     let audioUnlocked = false;
 
     function unlockAudioOnce() {
       if (audioUnlocked) return;
       audioUnlocked = true;
-
-      // Try to unlock on iOS/Chromebooks
       audioEl.play().then(() => audioEl.pause()).catch(() => {});
     }
 
-    // Unlock audio on first interaction anywhere
     document.addEventListener("pointerdown", unlockAudioOnce, { once: true });
 
     function showSlides(n) {
       const slides = document.getElementsByClassName("slide");
       const dots = document.getElementsByClassName("dot");
 
-      if (n >= slides.length) slideIndex = 0;
-      if (n < 0) slideIndex = slides.length - 1;
+      if (n >= slides.length) slideIndex = slides.length - 1;
+      if (n < 0) slideIndex = 0;
 
       for (let slide of slides) slide.style.display = "none";
       for (let dot of dots) dot.classList.remove("active");
 
       slides[slideIndex].style.display = "block";
       dots[slideIndex].classList.add("active");
+
+      /* ✅ Show Continue button ONLY on last slide */
+      if (slideIndex === slides.length - 1) {
+        continueContainer.style.display = "block";
+      } else {
+        continueContainer.style.display = "none";
+      }
     }
 
     function playSlideSound(soundUrl) {
-      if (!soundUrl) return;
-
       audioEl.pause();
       audioEl.currentTime = 0;
       audioEl.src = soundUrl;
-
-      audioEl.play().catch(() => {
-        // If blocked, user can tap letter again after interaction
-      });
+      audioEl.play().catch(() => {});
     }
 
-    // Make every big letter button play its own slide sound
-    function bindLetterButtons() {
-      document.querySelectorAll(".slide .letter").forEach(btn => {
-        btn.addEventListener("click", () => {
-          unlockAudioOnce();
-          const slide = btn.closest(".slide");
-          playSlideSound(slide.getAttribute("data-sound"));
-        });
+    document.querySelectorAll(".letter").forEach(btn => {
+      btn.addEventListener("click", () => {
+        unlockAudioOnce();
+        const slide = btn.closest(".slide");
+        playSlideSound(slide.dataset.sound);
       });
-    }
+    });
 
     function changeSlide(n) {
       slideIndex += n;
@@ -241,17 +249,13 @@
       showSlides(slideIndex);
     }
 
-    // Keyboard navigation
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") changeSlide(-1);
-      if (e.key === "ArrowRight") changeSlide(1);
-    });
+    function goToNext() {
+      window.location.href = "read-spell-review.html";
+    }
 
-    window.onload = () => {
-      bindLetterButtons();
-      showSlides(slideIndex);
-    };
+    window.onload = () => showSlides(slideIndex);
   </script>
 </body>
 </html>
+
 
