@@ -32,12 +32,29 @@
             margin-bottom: 20px;
         }
 
-        .word-grid p {
+        /* ✅ Make the review words BUTTONS */
+        .word-grid button.word-btn {
             background: #ddd;
-            padding: 10px;
+            padding: 12px 10px;
             border-radius: 5px;
             font-weight: bold;
             cursor: pointer;
+            border: none;
+            font-size: 16px;
+            transition: transform 0.1s ease, background 0.2s ease;
+        }
+
+        .word-grid button.word-btn:hover {
+            background: #cfcfcf;
+        }
+
+        .word-grid button.word-btn:active {
+            transform: translateY(2px);
+        }
+
+        .word-grid button.word-btn:focus {
+            outline: 3px solid rgba(0,0,0,0.25);
+            outline-offset: 2px;
         }
 
         .spelling-section {
@@ -96,10 +113,23 @@
     <main class="activity-container">
         <section>
             <h2>Let's review words we've learnt</h2>
+
             <div class="word-grid">
-                <p onclick="showImage('bat')">bat</p><p onclick="showImage('mat')">mat</p><p onclick="showImage('fan')">fan</p><p onclick="showImage('rat')">rat</p>
-                <p onclick="showImage('lap')">lap</p><p onclick="showImage('cap')">cap</p><p onclick="showImage('pen')">pen</p><p onclick="showImage('sun')">sun</p>
-                <p onclick="showImage('dog')">dog</p><p onclick="showImage('cat')">cat</p><p onclick="showImage('run')">run</p><p onclick="showImage('hat')">hat</p>
+                <!-- ✅ Changed from <p> to <button> -->
+                <button class="word-btn" type="button" onclick="reviewWord('bat')">bat</button>
+                <button class="word-btn" type="button" onclick="reviewWord('mat')">mat</button>
+                <button class="word-btn" type="button" onclick="reviewWord('fan')">fan</button>
+                <button class="word-btn" type="button" onclick="reviewWord('rat')">rat</button>
+
+                <button class="word-btn" type="button" onclick="reviewWord('lap')">lap</button>
+                <button class="word-btn" type="button" onclick="reviewWord('cap')">cap</button>
+                <button class="word-btn" type="button" onclick="reviewWord('pen')">pen</button>
+                <button class="word-btn" type="button" onclick="reviewWord('sun')">sun</button>
+
+                <button class="word-btn" type="button" onclick="reviewWord('dog')">dog</button>
+                <button class="word-btn" type="button" onclick="reviewWord('cat')">cat</button>
+                <button class="word-btn" type="button" onclick="reviewWord('run')">run</button>
+                <button class="word-btn" type="button" onclick="reviewWord('hat')">hat</button>
             </div>
 
             <div class="image-box" id="image-box">
@@ -124,12 +154,23 @@
         const words = ["bat", "mat", "fan", "rat", "lap"];
         const container = document.getElementById("word-container");
 
+        // ✅ One shared audio element is smoother than new Audio() each time
+        const sharedAudio = new Audio();
+        let audioUnlocked = false;
+
+        function unlockAudioOnce() {
+            if (audioUnlocked) return;
+            audioUnlocked = true;
+            sharedAudio.play().then(() => sharedAudio.pause()).catch(() => {});
+        }
+        document.addEventListener("pointerdown", unlockAudioOnce, { once: true });
+
         words.forEach((word, index) => {
             const section = document.createElement("div");
             section.classList.add("spelling-section");
             section.innerHTML = `
                 <p>Word ${index + 1}:</p>
-                <button class="play-btn" aria-label="Play ${word}" onclick="playAudio('${word}')">🔊 Play</button>
+                <button class="play-btn" type="button" aria-label="Play ${word}" onclick="playAudio('${word}')">🔊 Play</button>
                 <input type="text" id="word${index + 1}" aria-label="Type spelling for word ${index + 1}">
                 <span id="result${index + 1}"></span>
             `;
@@ -137,8 +178,17 @@
         });
 
         function playAudio(word) {
-            let audio = new Audio(`audio/${word}.mp3`);
-            audio.play();
+            unlockAudioOnce();
+            sharedAudio.pause();
+            sharedAudio.currentTime = 0;
+            sharedAudio.src = `audio/${word}.mp3`;
+            sharedAudio.play().catch(() => {});
+        }
+
+        // ✅ Review grid: click word -> play sound (and optionally show image)
+        function reviewWord(word) {
+            playAudio(word);
+            showImage(word); // keep this line if you still want the image popup
         }
 
         function showImage(word) {
@@ -155,6 +205,7 @@
             words.forEach((word, index) => {
                 let input = document.getElementById(`word${index + 1}`).value.trim().toLowerCase();
                 let resultSpan = document.getElementById(`result${index + 1}`);
+
                 if (input === word) {
                     resultSpan.textContent = "✔";
                     resultSpan.className = "correct";
@@ -165,11 +216,16 @@
                 }
             });
 
-            let resultText = score === words.length ? "Excellent! ✅ You got all correct!" : `You got ${score}/${words.length} correct. Try again! ❌`;
-            document.getElementById("spelling-result").textContent = resultText;
-            document.getElementById("spelling-result").style.color = score === words.length ? "green" : "red";
+            let resultText = score === words.length
+                ? "Excellent! ✅ You got all correct!"
+                : `You got ${score}/${words.length} correct. Try again! ❌`;
+
+            const resultEl = document.getElementById("spelling-result");
+            resultEl.textContent = resultText;
+            resultEl.style.color = score === words.length ? "green" : "red";
         }
     </script>
 
 </body>
 </html>
+
