@@ -1,270 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phonetic Focus - Short 'a' Sound</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            background: #f4f4f4;
-            margin: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phonetic Focus - Short 'a' Sound</title>
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-        h1, h2 {
-            color: #333;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: #f4f4f4;
+      margin: 20px;
+    }
 
-        .video-container {
-            margin-bottom: 20px;
-        }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border: 2px solid #333;
-            border-radius: 8px;
-        }
-        
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+    h1, h2 { color: #333; }
 
-        .phonics-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            background: #f8e7e7;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
+    /* Breadcrumb */
+    .breadcrumb {
+      margin: 10px auto 18px;
+      max-width: 800px;
+      font-size: 14px;
+      text-align: left;
+    }
+    .breadcrumb a {
+      color: #5b2bbf;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .breadcrumb span { margin: 0 6px; color: #777; }
 
-        .text-lines {
-            display: grid;
-            grid-template-columns: repeat(2, auto);
-            gap: 10px;
-            text-align: left;
-        }
+    /* Video */
+    .video-container { margin-bottom: 20px; }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border: 2px solid #333;
+      border-radius: 8px;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
 
-        .text-line input {
-            width: 60px;
-            height: 20px;
-            border: none;
-            border-bottom: 2px solid black;
-            background: transparent;
-            font-size: 16px;
-            text-align: center;
-            outline: none;
-        }
+    /* Phonics card */
+    .phonics-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: #f8e7e7;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-        .example-text {
-            flex-grow: 1;
-            text-align: center;
-        }
+    .text-lines {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      gap: 10px;
+      text-align: left;
+    }
 
-        .example-image {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-            border: 1px solid black;
-            margin-left: 10px;
-        }
+    .text-line input {
+      width: 60px;
+      height: 20px;
+      border: none;
+      border-bottom: 2px solid black;
+      background: transparent;
+      font-size: 16px;
+      text-align: center;
+      outline: none;
+    }
 
-        .word-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
+    .example-text { flex-grow: 1; text-align: center; }
 
-        .word {
-            padding: 10px;
-            background: #ddd;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    /* Fix: don't reuse .example-image for both div and img */
+    .example-image-box {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      overflow: hidden;
+    }
+    .example-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-        .word:hover {
-            background: #bbb;
-        }
+    /* Word chips */
+    .word-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .word {
+      padding: 10px;
+      background: #ddd;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+    .word:hover { background: #bbb; }
 
-        .spelling-section {
-            margin-top: 20px;
-        }
+    /* Spelling */
+    .spelling-section { margin-top: 20px; }
+    .word-audio {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .play-btn {
+      background: blue;
+      color: white;
+      padding: 10px 14px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-        .word-audio {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-        }
+    input[type="text"] {
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      text-align: center;
+    }
 
-        .play-btn {
-            background: blue;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 10px;
-        }
+    .check-btn {
+      background: green;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: 600;
+    }
 
-        input {
-            padding: 10px;
-            margin: 10px;
-            width: 200px;
-            text-align: center;
-        }
+    .result { font-weight: bold; margin-top: 10px; }
 
-        .check-btn {
-            background: green;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+    /* Internal pages */
+    .lesson-page { display: none; }
+    .lesson-page.active { display: block; }
 
-        .result {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+    /* Bottom navigation on each page */
+    .nav-buttons {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .nav-btn {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .nav-btn.primary { background: #1a73e8; color: #fff; }
+    .nav-btn.secondary { background: #e0e0e0; color: #111; }
+    .nav-btn.finish { background: #1b8f3a; color: #fff; }
+    .nav-btn:hover { filter: brightness(0.95); }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Phonetic Focus: Short 'a' Sound</h1>
 
-        <div class="video-container">
-            <h2>Learn the Short 'a' Sound</h2>
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/your_video_id_here" allowfullscreen></iframe>
-            </div>
+  <nav class="breadcrumb">
+    <a href="../../">Home</a>
+    <span>›</span>
+    <a href="../">Phonology</a>
+    <span>›</span>
+    <a href="./index.html">Level 1</a>
+  </nav>
+
+  <div class="container">
+    <h1>Phonetic Focus: Short 'a' Sound</h1>
+
+    <!-- =======================
+         PAGE 1: VIDEO + CARD
+    ======================== -->
+    <section class="lesson-page active" id="page-1">
+      <div class="video-container">
+        <h2>Learn the Short 'a' Sound</h2>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/your_video_id_here" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="phonics-section">
+        <div class="text-lines">
+          <div class="text-line"><input type="text" /></div>
+          <div class="text-line"><input type="text" /></div>
+          <div class="text-line"><input type="text" /></div>
+          <div class="text-line"><input type="text" /></div>
+          <div class="text-line"><input type="text" /></div>
+          <div class="text-line"><input type="text" /></div>
         </div>
 
-        <div class="phonics-section">
-            <div class="text-lines">
-                <div class="text-line"><input type="text"></div>
-                <div class="text-line"><input type="text"></div>
-                <div class="text-line"><input type="text"></div>
-                <div class="text-line"><input type="text"></div>
-                <div class="text-line"><input type="text"></div>
-                <div class="text-line"><input type="text"></div>
-            </div>
-            
-            <div class="example-text">
-                <h2 style="font-size: 36px;">Short 'a'</h2>
-                <p style="font-size: 24px;">'a' as in cat</p>
-            </div>
-            
-            <div class="example-image">
-                <img src="path/to/cat-image.jpg" alt="Cat Image" class="example-image">
-            </div>
+        <div class="example-text">
+          <h2 style="font-size: 36px;">Short 'a'</h2>
+          <p style="font-size: 24px;">'a' as in cat</p>
         </div>
 
-        <div class="reading-section">
-            <h2>Words to Read</h2>
-            <div class="word-list" id="word-list"></div>
+        <div class="example-image-box">
+          <img src="path/to/cat-image.jpg" alt="Cat Image" />
         </div>
+      </div>
 
-        <div class="spelling-section">
-            <h2>Spell the Words</h2>
-            <p>Press the "Play" button to hear the word, then type the correct spelling.</p>
-            <div id="spelling-list"></div>
-            <button class="check-btn" onclick="checkSpelling()">Check Answers</button>
-            <p id="spelling-result" class="result"></p>
-        </div>
-    </div>
+      <div class="nav-buttons">
+        <button class="nav-btn primary" onclick="goToPage(2)">Next →</button>
+      </div>
+    </section>
 
-    <script>
-        const words = ["cat", "bat", "map", "van", "jam", "wax", "rat", "bag", "tag", "lap"];
-        const selectedWords = words.slice(0, 4);
-        
-        function speakWord(word) {
-            if ('speechSynthesis' in window) {
-                let utterance = new SpeechSynthesisUtterance(word);
-                utterance.lang = 'en-US';
-                utterance.rate = 0.8;
-                speechSynthesis.speak(utterance);
-            } else {
-                alert("Your browser does not support text-to-speech.");
-            }
-        }
+    <!-- =======================
+         PAGE 2: WORDS TO READ
+    ======================== -->
+    <section class="lesson-page" id="page-2">
+      <div class="reading-section">
+        <h2>Words to Read</h2>
+        <p>Click a word to hear it.</p>
+        <div class="word-list" id="word-list"></div>
+      </div>
 
-        function generateWordList() {
-            const wordListContainer = document.getElementById("word-list");
-            words.forEach(word => {
-                const wordDiv = document.createElement("div");
-                wordDiv.className = "word";
-                wordDiv.textContent = word;
-                wordDiv.onclick = () => speakWord(word);
-                wordListContainer.appendChild(wordDiv);
-            });
-        }
+      <div class="nav-buttons">
+        <button class="nav-btn secondary" onclick="goToPage(1)">← Back</button>
+        <button class="nav-btn primary" onclick="goToPage(3)">Next →</button>
+      </div>
+    </section>
 
-        function generateSpellingList() {
-            const spellingContainer = document.getElementById("spelling-list");
-            spellingContainer.innerHTML = "";
-            selectedWords.forEach((word, index) => {
-                const spellingDiv = document.createElement("div");
-                spellingDiv.className = "word-audio";
-                spellingDiv.innerHTML = `
-                    <p>Word ${index + 1}:</p>
-                    <button class="play-btn" onclick="playAudio('${word}')">🔊 Play</button>
-                    <input type="text" id="word${index + 1}">
-                    <span id="feedback${index + 1}"></span>
-                `;
-                spellingContainer.appendChild(spellingDiv);
-            });
-        }
+    <!-- =======================
+         PAGE 3: SPELL THE WORDS
+    ======================== -->
+    <section class="lesson-page" id="page-3">
+      <div class="spelling-section">
+        <h2>Spell the Words</h2>
+        <p>Press the "Play" button to hear the word, then type the correct spelling.</p>
 
-        function playAudio(word) {
-            let audio = new Audio(`audio/${word}.mp3`);
-            audio.play().catch(() => {
-                alert(`Audio file for '${word}' not found.`);
-            });
-        }
+        <div id="spelling-list"></div>
 
-        function checkSpelling() {
-            selectedWords.forEach((word, index) => {
-                let userInput = document.getElementById("word" + (index + 1)).value.toLowerCase();
-                let feedback = document.getElementById("feedback" + (index + 1));
-                feedback.textContent = userInput === word ? " ✅" : " ❌";
-                feedback.style.color = userInput === word ? "green" : "red";
-            });
-        }
+        <button class="check-btn" onclick="checkSpelling()">Check Answers</button>
+        <p id="spelling-result" class="result"></p>
+      </div>
 
-        generateWordList();
-        generateSpellingList();
-    </script>
+      <div class="nav-buttons">
+        <button class="nav-btn secondary" onclick="goToPage(2)">← Back</button>
+        <button class="nav-btn finish" onclick="goNext()">Continue</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ===== Internal Page Navigation =====
+    function goToPage(pageNumber) {
+      document.querySelectorAll(".lesson-page").forEach(p => p.classList.remove("active"));
+      const page = document.getElementById(`page-${pageNumber}`);
+      if (page) page.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // ===== Your Existing Content Logic =====
+    const words = ["cat", "bat", "map", "van", "jam", "wax", "rat", "bag", "tag", "lap"];
+    const selectedWords = words.slice(0, 4);
+
+    function speakWord(word) {
+      if ("speechSynthesis" in window) {
+        let utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = "en-US";
+        utterance.rate = 0.8;
+        speechSynthesis.speak(utterance);
+      } else {
+        alert("Your browser does not support text-to-speech.");
+      }
+    }
+
+    function generateWordList() {
+      const wordListContainer = document.getElementById("word-list");
+      wordListContainer.innerHTML = "";
+      words.forEach(word => {
+        const wordDiv = document.createElement("div");
+        wordDiv.className = "word";
+        wordDiv.textContent = word;
+        wordDiv.onclick = () => speakWord(word);
+        wordListContainer.appendChild(wordDiv);
+      });
+    }
+
+    function generateSpellingList() {
+      const spellingContainer = document.getElementById("spelling-list");
+      spellingContainer.innerHTML = "";
+      selectedWords.forEach((word, index) => {
+        const spellingDiv = document.createElement("div");
+        spellingDiv.className = "word-audio";
+        spellingDiv.innerHTML = `
+          <p style="margin:0;">Word ${index + 1}:</p>
+          <button class="play-btn" type="button" onclick="playAudio('${word}')">🔊 Play</button>
+          <input type="text" id="word${index + 1}">
+          <span id="feedback${index + 1}"></span>
+        `;
+        spellingContainer.appendChild(spellingDiv);
+      });
+    }
+
+    function playAudio(word) {
+      let audio = new Audio(`audio/${word}.mp3`);
+      audio.play().catch(() => {
+        alert(`Audio file for '${word}' not found.`);
+      });
+    }
+
+    function checkSpelling() {
+      selectedWords.forEach((word, index) => {
+        let userInput = document.getElementById("word" + (index + 1)).value.toLowerCase().trim();
+        let feedback = document.getElementById("feedback" + (index + 1));
+        feedback.textContent = userInput === word ? " ✅" : " ❌";
+        feedback.style.color = userInput === word ? "green" : "red";
+      });
+    }
+
+    function goNext() {
+      window.location.href = "read-spell-focus.html";
+    }
+
+    // Expose functions for inline onclick handlers
+    window.goToPage = goToPage;
+    window.playAudio = playAudio;
+    window.checkSpelling = checkSpelling;
+    window.goNext = goNext;
+
+    // Init
+    generateWordList();
+    generateSpellingList();
+  </script>
 </body>
 </html>

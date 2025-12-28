@@ -6,13 +6,14 @@
     <title>Read Rally - CVC2 Reading Activity</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
             background: #f4f4f4;
             margin: 20px;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -21,13 +22,60 @@
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
+
         h1, h2 { color: #333; }
-        .word-list, .sentence-list {
+
+        /* Words in 3 columns */
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        /* Sentences stay as a vertical list */
+        .sentence-list {
             text-align: left;
             margin: 20px auto;
             max-width: 600px;
         }
-        .word, .sentence {
+
+        /* Word tiles */
+        .word {
+            padding: 12px;
+            background: #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .word:hover, .sentence:hover { background: #bbb; }
+
+        .word-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .phonemes {
+            font-size: 14px;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .audio {
+            display: block;
+            margin-top: 6px;
+            font-size: 16px;
+        }
+
+        /* Sentence rows */
+        .sentence {
             padding: 10px;
             background: #ddd;
             border-radius: 5px;
@@ -37,7 +85,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .word:hover, .sentence:hover { background: #bbb; }
+
         .timer-section {
             margin-top: 20px;
             padding: 15px;
@@ -46,7 +94,9 @@
             border-radius: 8px;
             background: #f9f9f9;
         }
+
         .timer { font-size: 24px; font-weight: bold; }
+
         .btn {
             background: blue;
             color: white;
@@ -56,116 +106,166 @@
             border-radius: 5px;
             margin: 5px;
         }
+
         .btn:hover { background: darkblue; }
+
+        /* Optional: space the toggle nicely */
+        .toggle-wrap {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    
+
 <nav class="activity-nav">
   <a href="./index.html">← Back to Level 2</a>
 </nav>
 
-    <div class="container">
-        <h1>Read Rally - CVC2 Reading Activity</h1>
-        
-        <div class="timer-section">
-            <button class="btn" onclick="startStopwatch()">Start</button>
-            <button class="btn" onclick="pauseStopwatch()">Pause</button>
-            <button class="btn" onclick="resetStopwatch()">Reset</button>
-            <p class="timer" id="timer">Time: 0:00</p>
-        </div>
+<div class="container">
+    <h1>Read Rally - CVC2 Reading Activity</h1>
 
-        <h2>Words</h2>
-        <p style="font-size: 18px; font-weight: 500;">Practice reading aloud. Click on words and sentences to hear pronunciation.</p>
-        <div class="word-list" id="wordList"></div>
-
-        <h2>Sentences</h2>
-        <div class="sentence-list" id="sentenceList"></div>
+    <div class="timer-section">
+        <button class="btn" onclick="startStopwatch()">Start</button>
+        <button class="btn" onclick="pauseStopwatch()">Pause</button>
+        <button class="btn" onclick="resetStopwatch()">Reset</button>
+        <p class="timer" id="timer">Time: 0:00</p>
     </div>
+
+    <h2>Words</h2>
+    <p style="font-size: 18px; font-weight: 500;">
+        Practice reading aloud. Click on words and sentences to hear pronunciation.
+    </p>
+
+    <!-- ✅ Phoneme Toggle Button -->
+    <div class="toggle-wrap">
+        <button class="btn" id="togglePhonemesBtn" onclick="togglePhonemes()">Show phonemes</button>
+    </div>
+
+    <div class="word-list" id="wordList"></div>
+
+    <h2>Sentences</h2>
+    <div class="sentence-list" id="sentenceList"></div>
+</div>
+
 <div style="margin-top: 30px; text-align: center;">
   <button class="check-btn" onclick="goNext()">Continue</button>
 </div>
 
-    <script>
-        let stopwatchInterval;
-        let elapsedTime = 0;
-        let isRunning = false;
+<script>
+    let stopwatchInterval;
+    let elapsedTime = 0;
+    let isRunning = false;
 
-        function startStopwatch() {
-            if (!isRunning) {
-                isRunning = true;
-                let startTime = Date.now() - elapsedTime;
-                stopwatchInterval = setInterval(() => {
-                    elapsedTime = Date.now() - startTime;
-                    document.getElementById('timer').innerText = formatTime(elapsedTime);
-                }, 100);
-            }
+    function startStopwatch() {
+        if (!isRunning) {
+            isRunning = true;
+            let startTime = Date.now() - elapsedTime;
+            stopwatchInterval = setInterval(() => {
+                elapsedTime = Date.now() - startTime;
+                document.getElementById('timer').innerText = formatTime(elapsedTime);
+            }, 100);
         }
+    }
 
-        function pauseStopwatch() {
-            clearInterval(stopwatchInterval);
-            isRunning = false;
-        }
+    function pauseStopwatch() {
+        clearInterval(stopwatchInterval);
+        isRunning = false;
+    }
 
-        function resetStopwatch() {
-            clearInterval(stopwatchInterval);
-            elapsedTime = 0;
-            isRunning = false;
-            document.getElementById('timer').innerText = "Time: 0:00";
-        }
+    function resetStopwatch() {
+        clearInterval(stopwatchInterval);
+        elapsedTime = 0;
+        isRunning = false;
+        document.getElementById('timer').innerText = "Time: 0:00";
+    }
 
-        function formatTime(ms) {
-            let totalSeconds = Math.floor(ms / 1000);
-            let minutes = Math.floor(totalSeconds / 60);
-            let seconds = totalSeconds % 60;
-            return `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        }
+    function formatTime(ms) {
+        let totalSeconds = Math.floor(ms / 1000);
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
+        return `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
 
-        function speakText(text) {
-            let speech = new SpeechSynthesisUtterance(text);
-            speech.lang = 'en-US';
-            speech.rate = 0.9; 
-            window.speechSynthesis.speak(speech);
-        }
+    function speakText(text) {
+        // Stop any current speech so clicks feel responsive
+        window.speechSynthesis.cancel();
 
-        const words = [
-            { word: 'Dip', phonemes: '/d/ /i/ /p/' },
-            { word: 'Lip', phonemes: '/l/ /i/ /p/' },
-            { word: 'Sip', phonemes: '/s/ /i/ /p/' },
-            { word: 'Tip', phonemes: '/t/ /i/ /p/' },
-            { word: 'Hip', phonemes: '/h/ /i/ /p/' },
-            { word: 'Rip', phonemes: '/r/ /i/ /p/' },
-            { word: 'Mat', phonemes: '/m/ /a/ /t/' },
-            { word: 'Bat', phonemes: '/b/ /a/ /t/' },
-            { word: 'Cat', phonemes: '/c/ /a/ /t/' },
-            { word: 'Pat', phonemes: '/p/ /a/ /t/' }
-        ];
+        let speech = new SpeechSynthesisUtterance(text);
+        speech.lang = 'en-US';
+        speech.rate = 0.9;
+        window.speechSynthesis.speak(speech);
+    }
 
-        const sentences = [
-            'Tim sips his drink.',
-            'The tip of the lip.',
-            'Max has a big bag.',
-            'Bill hits a bat.',
-            'A pig digs and a cat sits.'
-        ];
+    const words = [
+        { word: 'Dip', phonemes: '/d/ /i/ /p/' },
+        { word: 'Lip', phonemes: '/l/ /i/ /p/' },
+        { word: 'Sip', phonemes: '/s/ /i/ /p/' },
+        { word: 'Tip', phonemes: '/t/ /i/ /p/' },
+        { word: 'Hip', phonemes: '/h/ /i/ /p/' },
+        { word: 'Rip', phonemes: '/r/ /i/ /p/' },
+        { word: 'Mat', phonemes: '/m/ /a/ /t/' },
+        { word: 'Bat', phonemes: '/b/ /a/ /t/' },
+        { word: 'Cat', phonemes: '/c/ /a/ /t/' },
+        { word: 'Pat', phonemes: '/p/ /a/ /t/' }
+    ];
 
-        function populateList(list, items, type) {
-            items.forEach(item => {
-                let div = document.createElement('div');
-                div.classList.add(type);
-                div.innerHTML = `${item.word} - ${item.phonemes} 🔊`;
-                div.onclick = () => speakText(item.word);
-                list.appendChild(div);
-            });
-        }
+    const sentences = [
+        'Tim sips his drink.',
+        'The tip of the lip.',
+        'Max has a big bag.',
+        'Bill hits a bat.',
+        'A pig digs and a cat sits.'
+    ];
 
-        function goNext() {
-  window.location.href = "spell-bound.html";
-}
+    // ✅ New rendering: word on top, phonemes hidden by default, speaker icon below
+    function populateWordGrid(list, items) {
+        items.forEach(item => {
+            let div = document.createElement('div');
+            div.classList.add('word');
 
+            div.innerHTML = `
+                <div class="word-text">${item.word}</div>
+                <div class="phonemes hidden">${item.phonemes}</div>
+                <span class="audio">🔊</span>
+            `;
 
-        populateList(document.getElementById('wordList'), words, 'word');
-        populateList(document.getElementById('sentenceList'), sentences.map(sentence => ({ word: sentence, phonemes: '' })), 'sentence');
-    </script>
+            div.onclick = () => speakText(item.word);
+            list.appendChild(div);
+        });
+    }
+
+    function populateSentenceList(list, items) {
+        items.forEach(sentence => {
+            let div = document.createElement('div');
+            div.classList.add('sentence');
+            div.innerHTML = `${sentence} <span>🔊</span>`;
+            div.onclick = () => speakText(sentence);
+            list.appendChild(div);
+        });
+    }
+
+    // ✅ Toggle logic
+    let phonemesVisible = false;
+
+    function togglePhonemes() {
+        phonemesVisible = !phonemesVisible;
+
+        document.querySelectorAll('.phonemes').forEach(el => {
+            el.classList.toggle('hidden', !phonemesVisible);
+        });
+
+        document.getElementById('togglePhonemesBtn').innerText =
+            phonemesVisible ? 'Hide phonemes' : 'Show phonemes';
+    }
+
+    function goNext() {
+        window.location.href = "spell-bound.html";
+    }
+
+    // Render
+    populateWordGrid(document.getElementById('wordList'), words);
+    populateSentenceList(document.getElementById('sentenceList'), sentences);
+</script>
 </body>
 </html>
+
