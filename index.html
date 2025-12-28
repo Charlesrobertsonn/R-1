@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Root Reading</title>
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 
 <body>
@@ -20,42 +20,47 @@
     </ul>
   </nav>
 
-  <!-- Main Content -->
+  <!-- Hero Section -->
   <header id="main-header" class="header">
     <h1>Root Reading</h1>
+
     <p>
-      Welcome to <strong>Root Reading</strong>, a simple platform to learn English step by step.
+      Structured literacy activities that build reading step by step.
     </p>
-    <p>
-      Learning is organised into levels. Each level contains short activities that build
-      pronunciation, reading, and spelling in a clear sequence.
+
+    <p class="hero-support">
+      Start with phonology and phonics foundations — then move through short, clear practice tasks
+      designed for early readers, EAL/D learners, and students who need extra support.
     </p>
+
+    <div class="hero-actions">
+      <a class="button" href="phonology/">Start with Phonology</a>
+      <a class="button button-secondary" href="#learning-paths">See the Levels</a>
+    </div>
   </header>
 
-<section id="learning-paths" class="features-section">
-  <h2>Start Learning</h2>
+  <!-- Start Learning -->
+  <section id="learning-paths" class="features-section">
+    <h2>Start Learning</h2>
 
-  <div class="features-list">
+    <div class="features-list">
+      <!-- Phonology -->
+      <div class="feature-item">
+        <a href="phonology/" class="feature-link">
+          Phonology
+          <span class="feature-subtext">Sounds → syllables → blending</span>
+        </a>
+      </div>
 
-    <!-- Phonology -->
-    <div class="feature-item">
-      <a href="phonology/" class="feature-link">
-        Phonology
-      </a>
+      <!-- Morphology (Coming Soon) -->
+      <div class="feature-item is-disabled">
+        <a href="#" class="feature-link" aria-disabled="true" tabindex="-1">
+          Morphology
+          <span class="feature-subtext">Coming soon</span>
+        </a>
+      </div>
     </div>
-
-    <!-- Morphology (Coming Soon) -->
-    <div class="feature-item">
-      <a href="#" class="feature-link" aria-disabled="true" onclick="return false;">
-        Morphology
-        <div class="feature-subtext">Coming soon</div>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-
+  </section>
 
   <!-- Footer -->
   <footer id="main-footer" class="footer">
@@ -64,7 +69,9 @@
       <li class="footer-item"><span class="footer-link">Privacy Policy (coming soon)</span></li>
       <li class="footer-item"><span class="footer-link">Follow us on Social Media (coming soon)</span></li>
     </ul>
+    <div class="footer-small">Root Reading © 2025 • Evidence-based literacy learning</div>
   </footer>
 </body>
 </html>
+
 
