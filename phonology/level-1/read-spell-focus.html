@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Read-Spell-Focus</title>
 
-  <!-- Shared -->
+  <!-- Shared (site-wide for phonology levels) -->
   <link rel="stylesheet" href="../assets/css/level.css" />
 
   <!-- Activity-specific -->
@@ -13,45 +13,54 @@
 </head>
 
 <body>
+  <!-- Consistent nav across Level 1 -->
   <nav class="level-nav">
     <a href="./index.html">← Back to Level 1</a>
     <div class="nav-title">Level 1 • Read-Spell-Focus</div>
     <a href="../../index.html">Home</a>
   </nav>
 
-  <main class="container">
-    <header class="page-hero">
-      <h1>Read-Spell-Focus</h1>
-      <p class="subtitle">Read the words, then sound them out and spell them.</p>
-    </header>
+  <div class="page-wrap">
+    <main class="container">
+      <header class="page-hero">
+        <h1>Read-Spell-Focus</h1>
+        <p class="subtitle">Read the words, then sound them out and spell them.</p>
+      </header>
 
-    <section class="card">
-      <h2>Read it loud!</h2>
-      <p>Read each row three times. Click a word if you're stuck.</p>
+      <section class="card">
+        <!-- READ -->
+        <section class="section-block">
+          <h2>Read it loud!</h2>
+          <p class="helper">Read each row three times. Click a word if you're stuck.</p>
 
-      <div class="reading-grid" id="readingGrid" aria-label="Reading grid"></div>
+          <div class="reading-grid" id="readingGrid" aria-label="Reading words grid"></div>
+        </section>
 
-      <hr class="section-divider" />
+        <hr class="divider" />
 
-      <h2>Spell it out!</h2>
-      <p>Click 🔊 to hear the word, then type it.</p>
+        <!-- SPELL -->
+        <section class="section-block">
+          <h2>Spell it out!</h2>
+          <p class="helper">Click 🔊 to hear the word, then type it.</p>
 
-      <div class="writing-grid" id="writingGrid" aria-label="Spelling grid"></div>
+          <div class="writing-grid" id="writingGrid" aria-label="Spelling practice grid"></div>
 
-      <div class="btn-container">
-        <button class="btn" type="button" id="btn-go">Go</button>
-        <button class="btn" type="button" id="btn-check">Check</button>
-        <button class="btn" type="button" id="btn-next">Next</button>
-        <button class="btn" type="button" id="btn-hint">Hint</button>
-      </div>
+          <div class="btn-row" aria-label="Practice controls">
+            <button class="btn" type="button" id="goBtn">Go</button>
+            <button class="btn" type="button" id="checkBtn">Check</button>
+            <button class="btn" type="button" id="nextBtn">Next</button>
+            <button class="btn secondary" type="button" id="hintBtn">Hint</button>
+          </div>
 
-      <p id="result-message" class="result" aria-live="polite"></p>
+          <p id="result-message" class="result" aria-live="polite"></p>
 
-      <div class="nav-buttons">
-        <button class="nav-btn finish" type="button" id="continue-btn">Continue</button>
-      </div>
-    </section>
-  </main>
+          <div class="nav-buttons">
+            <button class="nav-btn finish" type="button" id="continueBtn">Continue</button>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
 
   <!-- Shared -->
   <script src="../assets/js/level-core.js"></script>
