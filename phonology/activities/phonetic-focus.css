@@ -1,178 +1,280 @@
 /* phonology/activities/phonetic-focus.css */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+/* =========================
+   Base + layout (centred, not full width)
+========================= */
+:root{
+  --bg:#f4f4f4;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:0 10px 30px rgba(0,0,0,.10);
+  --primary:#1a73e8;
+  --primary-dark:#0b57d0;
+  --green:#15803d;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  margin:20px;
+  color:var(--text);
+  text-align:left;
+}
+
+/* Optional: if your HTML uses these wrappers */
+.page-wrap{
+  width:min(980px, 100%);
+  margin:0 auto;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:26px;
+}
 
 /* Keep activity styling scoped so it doesn't leak */
-.lesson-page { display: none; }
-.lesson-page.active { display: block; }
+.lesson-page{ display:none; }
+.lesson-page.active{ display:block; }
 
-h1, h2 { color: #333; }
+h1, h2{ color:#333; }
 
-/* Video */
-.video-container { margin-bottom: 20px; }
-
-.video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border: 2px solid #333;
-  border-radius: 12px;
+/* Optional: nicer centred heading/subtitle */
+h1{
+  text-align:center;
+  font-size:40px;
+  margin:0 0 8px;
+}
+.activity-subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin:0 0 18px;
 }
 
-.video-wrapper iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
+/* =========================
+   Video (smaller + centred)
+========================= */
+.video-container{ margin-bottom:18px; }
+
+.video-container h2{
+  text-align:center;
+  margin:12px 0;
 }
 
-/* Phonics card */
-.phonics-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background: #f8e7e7;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px 0;
-  gap: 12px;
-  flex-wrap: wrap;
+.video-wrapper{
+  width:min(720px, 100%);
+  margin:0 auto;
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#000;
 }
 
-.text-lines {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 10px;
-  text-align: left;
+.video-wrapper iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:none;
 }
 
-.text-line input {
-  width: 70px;
-  height: 26px;
-  border: none;
-  border-bottom: 2px solid #111;
-  background: transparent;
-  font-size: 16px;
-  text-align: center;
-  outline: none;
+/* =========================
+   Phonics card (centred + cleaner)
+========================= */
+.phonics-section{
+  width:min(860px, 100%);
+  margin:18px auto 0;
+  background:#f8e7e7;
+  padding:18px;
+  border-radius:14px;
+
+  display:grid;
+  grid-template-columns: 1fr 1fr 120px;
+  gap:14px;
+  align-items:center;
 }
 
-.example-text { flex-grow: 1; text-align: center; }
-
-.sound-title {
-  font-size: 36px;
-  margin: 0;
+.text-lines{
+  display:grid;
+  grid-template-columns:repeat(2, 70px);
+  gap:10px 14px;
+  justify-content:center;
 }
 
-.sound-subtitle {
-  font-size: 22px;
-  margin: 0;
+.text-line input{
+  width:70px;
+  height:26px;
+  border:none;
+  border-bottom:2px solid #111;
+  background:transparent;
+  font-size:16px;
+  text-align:center;
+  outline:none;
 }
 
-.example-image-box {
-  width: 64px;
-  height: 64px;
-  background: white;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #111;
-  overflow: hidden;
+.example-text{
+  text-align:center;
 }
 
-.example-image-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.sound-title{
+  font-size:34px;
+  margin:0;
 }
 
-/* Word chips */
-.word-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
+.sound-subtitle{
+  font-size:18px;
+  margin:4px 0 0;
 }
 
-.word {
-  padding: 10px 12px;
-  background: #ddd;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 800;
-  cursor: pointer;
-  user-select: none;
-  transition: filter 0.15s ease;
+.example-image-box{
+  width:90px;
+  height:90px;
+  background:#fff;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #111;
+  overflow:hidden;
+  margin:0 auto;
 }
 
-.word:hover { filter: brightness(0.95); }
-
-/* Spelling rows */
-.spelling-section { margin-top: 10px; }
-
-.word-audio {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0;
-  gap: 10px;
-  flex-wrap: wrap;
+.example-image-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
-.play-btn {
-  background: #0b57d0;
-  color: white;
-  padding: 10px 14px;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  font-weight: 700;
+/* =========================
+   Words page
+========================= */
+.word-list{
+  width:min(860px, 100%);
+  margin:14px auto 0;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
 }
 
-.word-audio input[type="text"] {
-  padding: 10px;
-  width: 220px;
-  text-align: center;
-  border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.25);
+.word{
+  padding:10px 12px;
+  background:#e5e7eb;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+  user-select:none;
+  transition:filter .15s ease, transform .12s ease;
 }
 
-.check-btn {
-  background: #15803d;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  font-weight: 800;
-  margin-top: 10px;
+.word:hover{
+  filter:brightness(0.96);
+  transform:translateY(-1px);
 }
 
-.result { font-weight: 800; margin-top: 10px; }
-
-/* Bottom navigation */
-.nav-buttons {
-  margin-top: 28px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+/* =========================
+   Spelling rows (centred + tidy)
+========================= */
+.spelling-section{
+  margin-top:10px;
+  text-align:center;
 }
 
-.nav-btn {
-  padding: 12px 18px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 800;
+#spelling-list{
+  width:min(720px, 100%);
+  margin:12px auto 0;
 }
 
-.nav-btn.primary { background: #1a73e8; color: #fff; }
-.nav-btn.secondary { background: #e0e0e0; color: #111; }
-.nav-btn.finish { background: #15803d; color: #fff; }
-.nav-btn:hover { filter: brightness(0.96); }
+.word-audio{
+  display:grid;
+  grid-template-columns: 90px 110px 1fr auto;
+  gap:10px;
+  align-items:center;
+  margin:10px 0;
+}
+
+.play-btn{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:10px 14px;
+  border:none;
+  cursor:pointer;
+  border-radius:10px;
+  font-weight:800;
+}
+
+.word-audio input[type="text"]{
+  padding:10px 12px;
+  width:100%;
+  text-align:center;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.25);
+  font-size:16px;
+}
+
+.check-btn{
+  background:var(--green);
+  color:#fff;
+  padding:12px 18px;
+  border:none;
+  cursor:pointer;
+  border-radius:12px;
+  font-weight:800;
+  margin-top:10px;
+}
+
+.check-btn:hover{ filter:brightness(0.97); }
+
+.result{ font-weight:800; margin-top:10px; }
+
+/* =========================
+   Bottom navigation
+========================= */
+.nav-buttons{
+  margin-top:22px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.nav-btn{
+  padding:12px 18px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:800;
+}
+
+.nav-btn.primary{ background:var(--primary); color:#fff; }
+.nav-btn.secondary{ background:#e5e7eb; color:#111; }
+.nav-btn.finish{ background:var(--green); color:#fff; }
+.nav-btn:hover{ filter:brightness(0.96); }
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 760px){
+  .phonics-section{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .word-audio{
+    grid-template-columns:1fr;
+  }
+}
+
