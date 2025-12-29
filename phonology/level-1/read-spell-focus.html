@@ -1,181 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Read-Spell-Focus</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            background: #f4f4f4;
-            margin: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .reading-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 across */
-            grid-auto-rows: auto;                 /* rows adjust automatically */
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .reading-word {
-            background: #ddd;
-            padding: 15px;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-        }
-        .reading-word:hover {
-            background: #ccc;
-        }
-        .btn-container {
-            margin-top: 10px;
-        }
-        .btn {
-            background: #4CAF50;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            margin: 5px;
-            font-size: 12px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        .btn:hover { background: #45a049; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read-Spell-Focus</title>
+
+  <!-- Shared -->
+  <link rel="stylesheet" href="../assets/css/level.css" />
+
+  <!-- Activity-specific -->
+  <link rel="stylesheet" href="../activities/read-spell-focus.css" />
 </head>
+
 <body>
-    
-<nav class="activity-nav">
-  <a href="./index.html">← Back to Level 1</a>
-</nav>
+  <nav class="level-nav">
+    <a href="./index.html">← Back to Level 1</a>
+    <div class="nav-title">Level 1 • Read-Spell-Focus</div>
+    <a href="../../index.html">Home</a>
+  </nav>
 
-    <div class="container">
-        <h1>Read-Spell-Focus</h1>
-        
-        <h2>Read it loud!</h2>
-        <p>Read each row three times. Click the word if you're stuck. Good luck!</p>
-        
-        <div class="reading-grid" id="readingGrid"></div>
-        
-        <h2 style="margin-top: 50px;">Spell it out!</h2>
-        <p style="margin-bottom: 20px;">Listen to the sounds in the word and spell it out!</p>
-        
-        <div class="writing-grid" id="writingGrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;"></div>
+  <main class="container">
+    <header class="page-hero">
+      <h1>Read-Spell-Focus</h1>
+      <p class="subtitle">Read the words, then sound them out and spell them.</p>
+    </header>
 
-        <div class="btn-container">
-            <button class="btn" onclick="playSentence()">Go</button>
-            <button class="btn" onclick="checkSentence()">Check</button>
-            <button class="btn" onclick="nextTask()">Next</button>
-            <button class="btn" onclick="showHint()">Hint</button>
-        </div>
+    <section class="card">
+      <h2>Read it loud!</h2>
+      <p>Read each row three times. Click a word if you're stuck.</p>
 
-        <p id="result-message" class="result"></p>
-    </div>
-    
-<div style="margin-top: 30px; text-align: center;">
-  <button class="check-btn" onclick="goNext()">Continue</button>
-</div>
+      <div class="reading-grid" id="readingGrid" aria-label="Reading grid"></div>
 
-    <script>
-        const words = [
-            "cat", "bat", "rat", "hat",
-            "pen", "ten",
-        ];
+      <hr class="section-divider" />
 
-        const readingGrid = document.getElementById("readingGrid");
-        const writingGrid = document.getElementById("writingGrid");
+      <h2>Spell it out!</h2>
+      <p>Click 🔊 to hear the word, then type it.</p>
 
-        function playWord(word) {
-            let msg = new SpeechSynthesisUtterance(word);
-            window.speechSynthesis.speak(msg);
-        }
+      <div class="writing-grid" id="writingGrid" aria-label="Spelling grid"></div>
 
-        function generateReadingWords() {
-            words.forEach(word => {
-                const wordDiv = document.createElement("div");
-                wordDiv.classList.add("reading-word");
-                wordDiv.textContent = word;
-                wordDiv.onclick = () => playWord(word);
-                readingGrid.appendChild(wordDiv);
-            });
-        }
+      <div class="btn-container">
+        <button class="btn" type="button" id="btn-go">Go</button>
+        <button class="btn" type="button" id="btn-check">Check</button>
+        <button class="btn" type="button" id="btn-next">Next</button>
+        <button class="btn" type="button" id="btn-hint">Hint</button>
+      </div>
 
-        function generateWritingTask() {
-            writingGrid.innerHTML = "";
-            let shuffledWords = words.sort(() => 0.5 - Math.random()).slice(0, 9);
-            shuffledWords.forEach(word => {
-                let wordBlock = document.createElement("div");
-                wordBlock.style.display = "flex";
-                wordBlock.style.alignItems = "center";
+      <p id="result-message" class="result" aria-live="polite"></p>
 
-                let button = document.createElement("button");
-                button.classList.add("btn");
-                button.style.padding = "2.5px 5px";
-                button.style.fontSize = "10px";
-                button.style.marginRight = "10px";
-                button.innerHTML = "🔊";
-                button.onclick = () => playWord(word);
+      <div class="nav-buttons">
+        <button class="nav-btn finish" type="button" id="continue-btn">Continue</button>
+      </div>
+    </section>
+  </main>
 
-                let input = document.createElement("input");
-                input.setAttribute("type", "text");
-                input.setAttribute("data-word", word);
-                input.style.flex = "1";
-                input.style.padding = "5px";
-                input.style.fontSize = "16px";
-                input.style.textAlign = "center";
+  <!-- Shared -->
+  <script src="../assets/js/level-core.js"></script>
 
-                wordBlock.appendChild(button);
-                wordBlock.appendChild(input);
-                writingGrid.appendChild(wordBlock);
-            });
-        }
-
-        function checkSentence() {
-            const inputs = document.querySelectorAll("#writingGrid input");
-
-            inputs.forEach(input => {
-                const correctWord = input.getAttribute("data-word").toLowerCase();
-                const userInput = input.value.trim().toLowerCase();
-
-                if (userInput === correctWord) {
-                    input.style.backgroundColor = "#c8e6c9"; // Light green for correct
-                    input.style.border = "2px solid #388e3c"; // Dark green border
-                } else {
-                    input.style.backgroundColor = "#ffcccb"; // Light red for incorrect
-                    input.style.border = "2px solid #d32f2f"; // Dark red border
-                }
-            });
-        }
-
-        // Real-time feedback: Reset color when user types
-        document.addEventListener("input", function(event) {
-            if (event.target.tagName === "INPUT") {
-                event.target.style.backgroundColor = "white"; // Reset color while typing
-                event.target.style.border = "1px solid #ccc";
-            }
-        });
-
-        function goNext() {
-  window.location.href = "syllabication.html";
-}
-
-        // Initialize the grid
-        generateReadingWords();
-        generateWritingTask();
-    </script>
+  <!-- Activity-specific -->
+  <script src="../activities/read-spell-focus.js"></script>
 </body>
 </html>
+
