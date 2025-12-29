@@ -1,300 +1,105 @@
-/* =========================
-   Level 1 – Shared Styling
-   ========================= */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap");
 
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
-/* Base */
-* {
-  box-sizing: border-box;
+:root{
+  --bg:#f4f4f4;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --primary:#2563eb;
+  --primaryShadow: rgba(37,99,235,0.35);
+  --border: rgba(17,24,39,0.08);
 }
 
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  background: #f4f4f4;
-  color: #1f2937;
-  text-align: center;
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:"Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
-/* =========================
-   Navigation / Breadcrumbs
-   ========================= */
+a{ color: inherit; }
 
-.activity-nav,
-.breadcrumb {
-  max-width: 900px;
-  margin: 0 auto 16px;
-  font-size: 14px;
-  text-align: left;
+.level-shell{
+  min-height: 100vh;
+  padding: 18px 18px 40px;
 }
 
-.activity-nav a,
-.breadcrumb a {
-  color: #5b2bbf;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-/* =========================
-   Containers / Cards
-   ========================= */
-
-.container {
-  max-width: 900px;
+.level-topbar{
+  max-width: 980px;
   margin: 0 auto;
-  background: white;
-  padding: 24px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+.back-link{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  text-decoration:none;
+  font-weight:700;
+  color: var(--primary);
+  padding:10px 12px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+.back-link:hover{
+  background: rgba(37,99,235,0.08);
 }
 
-/* =========================
-   Headings
-   ========================= */
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 12px;
+.level-main{
+  max-width: 980px;
+  margin: 0 auto;
+  min-height: calc(100vh - 120px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
-h2 {
-  font-size: 24px;
-  margin: 16px 0 8px;
+.level-title{
+  font-size: 44px;
+  line-height: 1.1;
+  margin: 0 0 20px;
+  letter-spacing: -0.5px;
 }
 
-p {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-/* =========================
-   Buttons
-   ========================= */
-
-button,
-.btn {
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: 700;
-  border-radius: 10px;
-  padding: 12px 18px;
+.level-subtitle{
+  margin: 0 0 36px;
+  color: var(--muted);
   font-size: 16px;
 }
 
-.btn-primary {
-  background: #2563eb;
-  color: white;
-}
-
-.btn-secondary {
-  background: #e5e7eb;
-  color: #111;
-}
-
-.btn-success,
-.check-btn {
-  background: #16a34a;
-  color: white;
-}
-
-button:hover,
-.btn:hover {
-  filter: brightness(0.95);
-}
-
-/* Navigation buttons under activities */
-.nav-buttons {
-  margin-top: 28px;
-  display: flex;
-  justify-content: center;
+.start-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   gap: 12px;
-  flex-wrap: wrap;
+  padding: 22px 48px;
+  font-size: 26px;
+  font-weight: 800;
+  border-radius: 18px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration:none;
+  box-shadow: 0 12px 30px var(--primaryShadow);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.start-btn:hover{
+  transform: scale(1.04);
+  box-shadow: 0 18px 42px rgba(37,99,235,0.45);
+}
+.start-btn:active{
+  transform: scale(1.01);
+  filter: brightness(0.98);
 }
 
-/* =========================
-   Video
-   ========================= */
-
-.video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 10px;
-  border: 2px solid #111;
+@media (max-width: 520px){
+  .level-title{ font-size: 34px; }
+  .start-btn{ font-size: 20px; padding: 18px 34px; }
 }
 
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* =========================
-   Word Chips (Reading)
-   ========================= */
-
-.word-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.word,
-.reading-word {
-  background: #e5e5e5;
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  user-select: none;
-}
-
-.word:hover,
-.reading-word:hover {
-  background: #d4d4d4;
-}
-
-/* =========================
-   Grids
-   ========================= */
-
-.reading-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin: 20px 0;
-}
-
-.writing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 20px 0;
-}
-
-/* =========================
-   Inputs
-   ========================= */
-
-input[type="text"] {
-  padding: 10px;
-  font-size: 16px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
-}
-
-input[type="text"]:focus {
-  border-color: #2563eb;
-}
-
-/* =========================
-   Phonics Card (Short Vowel)
-   ========================= */
-
-.phonics-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  background: #f8e7e7;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px 0;
-}
-
-.example-image-box {
-  width: 70px;
-  height: 70px;
-  background: white;
-  border-radius: 10px;
-  border: 1px solid #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.example-image-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* =========================
-   Lesson Pages (internal)
-   ========================= */
-
-.lesson-page {
-  display: none;
-}
-
-.lesson-page.active {
-  display: block;
-}
-
-/* =========================
-   Syllabication
-   ========================= */
-
-.word-list.grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
-
-.syllable-inputs {
-  display: inline-flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.syllable-inputs input {
-  width: 110px;
-}
-
-/* =========================
-   Results / Feedback
-   ========================= */
-
-.result {
-  font-weight: 700;
-  margin-top: 12px;
-}
-
-/* =========================
-   Responsive
-   ========================= */
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 28px;
-  }
-
-  .reading-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .writing-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .phonics-section {
-    flex-direction: column;
-    text-align: center;
-  }
-}
 
