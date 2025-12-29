@@ -1,0 +1,118 @@
+/* phonology/activities/syllabication.css */
+
+h1, h2 { color: #222; }
+
+/* Two-page system */
+.page { display: none; }
+.page.active { display: block; }
+
+.page-nav {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Video */
+.video-section { margin-bottom: 18px; }
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 2px solid rgba(0,0,0,0.25);
+}
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Word tiles */
+.word-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.word {
+  padding: 12px 10px;
+  background: #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  transition: filter 0.15s ease;
+}
+
+.word:hover { filter: brightness(0.96); }
+
+/* Syllable activity */
+.syllable-section { margin-top: 22px; }
+
+.form-group { margin: 14px 0; }
+label {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.syllable-inputs {
+  display: inline-flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.syllable-inputs input {
+  width: 120px;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: 10px;
+  outline: none;
+}
+
+.syllable-inputs input:focus {
+  border-color: #1b8f3a;
+}
+
+.form-group.example {
+  background: #e9f5ff;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.check-btn {
+  background: #1b8f3a;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-top: 10px;
+  font-weight: 800;
+}
+
+.check-btn:hover { filter: brightness(0.95); }
+
+.result {
+  font-weight: 800;
+  margin-top: 12px;
+}
+
+.finish-container {
+  margin-top: 22px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .word-list { grid-template-columns: repeat(2, 1fr); }
+}
