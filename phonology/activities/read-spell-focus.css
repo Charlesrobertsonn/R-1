@@ -1,43 +1,61 @@
 /* phonology/activities/read-spell-focus.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-h1, h2 { color: #222; }
+/* Keep this activity looking centred + not full-page-wide */
 
-.section-divider {
-  margin: 28px auto;
-  border: none;
-  border-top: 1px solid rgba(0,0,0,0.12);
-  width: 100%;
+.section-block {
+  padding: 6px 0 2px;
+  text-align: left;
 }
 
-/* Reading grid */
+.section-block h2 {
+  margin: 14px 0 6px;
+}
+
+.helper {
+  margin: 0 0 14px;
+  color: rgba(0,0,0,0.75);
+}
+
+/* Divider inside the card */
+.divider {
+  border: none;
+  height: 1px;
+  background: rgba(0,0,0,0.10);
+  margin: 22px 0;
+}
+
+/* ---------- Reading grid ---------- */
 .reading-grid {
+  width: min(860px, 100%);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: auto;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 12px;
 }
 
 .reading-word {
-  background: #ddd;
-  padding: 15px;
-  border-radius: 12px;
+  background: #e2e2e2;
+  border-radius: 14px;
+  padding: 18px 14px;
   font-size: 18px;
   font-weight: 800;
   text-align: center;
   cursor: pointer;
-  border: none;
-  transition: filter 0.15s ease;
+  user-select: none;
+  transition: filter 0.15s ease, transform 0.1s ease;
 }
 
 .reading-word:hover { filter: brightness(0.97); }
+.reading-word:active { transform: scale(0.99); }
 
-/* Writing grid */
+/* ---------- Writing grid ---------- */
 .writing-grid {
+  width: min(980px, 100%);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  margin: 20px 0;
 }
 
 .word-block {
@@ -46,61 +64,94 @@ h1, h2 { color: #222; }
   gap: 10px;
 }
 
-.sound-btn {
-  background: #0b57d0;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  font-weight: 800;
+.audio-btn {
   width: 44px;
-  height: 40px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #0b57d0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
 }
 
 .word-input {
-  flex: 1;
-  padding: 10px;
+  width: 100%;
+  padding: 12px 12px;
   font-size: 16px;
-  text-align: center;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid rgba(0,0,0,0.25);
+  outline: none;
 }
 
-/* Controls */
-.btn-container {
-  margin-top: 12px;
+.word-input:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 3px rgba(26,115,232,0.15);
+}
+
+/* Buttons row */
+.btn-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 10px;
+  flex-wrap: wrap;
+  margin: 18px 0 6px;
 }
 
 .btn {
-  background: #4CAF50;
+  background: #15803d;
   color: white;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border: none;
   cursor: pointer;
-  border-radius: 12px;
-  font-size: 13px;
+  border-radius: 999px;
+  font-size: 14px;
   font-weight: 800;
-  transition: filter 0.15s ease;
 }
 
-.btn:hover { filter: brightness(0.95); }
+.btn.secondary {
+  background: #e0e0e0;
+  color: #111;
+}
+
+.btn:hover { filter: brightness(0.96); }
 
 .result {
-  margin-top: 12px;
+  text-align: center;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+/* Continue button consistent with other activities */
+.nav-buttons {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-btn {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
   font-weight: 800;
 }
 
-/* Responsive tweaks */
-@media (max-width: 800px) {
+.nav-btn.finish {
+  background: #15803d;
+  color: #fff;
+}
+
+.nav-btn:hover { filter: brightness(0.96); }
+
+/* Responsive */
+@media (max-width: 900px) {
   .writing-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .reading-grid { grid-template-columns: 1fr; }
   .writing-grid { grid-template-columns: 1fr; }
 }
-
