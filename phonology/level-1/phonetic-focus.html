@@ -20,93 +20,109 @@
     <a href="../../index.html">Home</a>
   </nav>
 
-  <main class="container">
-    <header class="page-hero">
-      <h1>Phonetic Focus: Short 'a' Sound</h1>
-      <p class="subtitle">Watch, practise, then read and spell the words.</p>
-    </header>
+  <!-- Added wrapper so the activity doesn't stretch edge-to-edge -->
+  <div class="page-wrap">
+    <main class="container">
+      <header class="page-hero">
+        <h1>Phonetic Focus: Short 'a' Sound</h1>
+        <p class="subtitle activity-subtitle">Watch, practise, then read and spell the words.</p>
+      </header>
 
-    <section class="card">
-      <!-- =======================
-           PAGE 1: VIDEO + CARD
-      ======================== -->
-      <section class="lesson-page active" id="page-1">
-        <div class="video-container">
-          <h2>Learn the Short 'a' Sound</h2>
+      <section class="card">
+        <!-- =======================
+             PAGE 1: VIDEO + CARD
+        ======================== -->
+        <section class="lesson-page active" id="page-1" aria-labelledby="pf-title">
+          <div class="video-container">
+            <h2 id="pf-title">Learn the Short 'a' Sound</h2>
 
-          <div class="video-wrapper">
-            <!-- Replace your_video_id_here -->
-            <iframe
-              src="https://www.youtube.com/embed/your_video_id_here"
-              allowfullscreen
-              title="Short a lesson video"
-            ></iframe>
-          </div>
-        </div>
-
-        <div class="phonics-section">
-          <div class="text-lines" aria-label="Sound writing lines">
-            <div class="text-line"><input type="text" aria-label="Line 1" /></div>
-            <div class="text-line"><input type="text" aria-label="Line 2" /></div>
-            <div class="text-line"><input type="text" aria-label="Line 3" /></div>
-            <div class="text-line"><input type="text" aria-label="Line 4" /></div>
-            <div class="text-line"><input type="text" aria-label="Line 5" /></div>
-            <div class="text-line"><input type="text" aria-label="Line 6" /></div>
+            <div class="video-wrapper">
+              <!-- Replace your_video_id_here -->
+              <iframe
+                src="https://www.youtube.com/embed/your_video_id_here"
+                allowfullscreen
+                title="Short a lesson video"
+              ></iframe>
+            </div>
           </div>
 
-          <div class="example-text">
-            <h2 class="sound-title">Short 'a'</h2>
-            <p class="sound-subtitle">'a' as in cat</p>
+          <div class="phonics-section" aria-label="Short a practice card">
+            <div class="text-lines" aria-label="Sound writing lines">
+              <div class="text-line"><input type="text" aria-label="Line 1" /></div>
+              <div class="text-line"><input type="text" aria-label="Line 2" /></div>
+              <div class="text-line"><input type="text" aria-label="Line 3" /></div>
+              <div class="text-line"><input type="text" aria-label="Line 4" /></div>
+              <div class="text-line"><input type="text" aria-label="Line 5" /></div>
+              <div class="text-line"><input type="text" aria-label="Line 6" /></div>
+            </div>
+
+            <div class="example-text">
+              <h2 class="sound-title">Short 'a'</h2>
+              <p class="sound-subtitle">'a' as in cat</p>
+            </div>
+
+            <div class="example-image-box">
+              <!-- IMPORTANT: update this path to your real image -->
+              <img src="path/to/cat-image.jpg" alt="Cat" />
+            </div>
           </div>
 
-          <div class="example-image-box">
-            <!-- IMPORTANT: update this path to your real image -->
-            <img src="path/to/cat-image.jpg" alt="Cat" />
+          <div class="nav-buttons">
+            <button class="nav-btn primary" type="button" data-next-page="2" aria-label="Next page">
+              Next →
+            </button>
           </div>
-        </div>
+        </section>
 
-        <div class="nav-buttons">
-          <button class="nav-btn primary" type="button" data-next-page="2">Next →</button>
-        </div>
+        <!-- =======================
+             PAGE 2: WORDS TO READ
+        ======================== -->
+        <section class="lesson-page" id="page-2">
+          <div class="reading-section" style="text-align:center;">
+            <h2>Words to Read</h2>
+            <p style="margin: 0 0 8px;">Click a word to hear it.</p>
+
+            <!-- This will now centre nicely due to CSS width + margin auto -->
+            <div class="word-list" id="word-list" aria-label="Words to read"></div>
+          </div>
+
+          <div class="nav-buttons">
+            <button class="nav-btn secondary" type="button" data-prev-page="1" aria-label="Back to previous page">
+              ← Back
+            </button>
+            <button class="nav-btn primary" type="button" data-next-page="3" aria-label="Next page">
+              Next →
+            </button>
+          </div>
+        </section>
+
+        <!-- =======================
+             PAGE 3: SPELL THE WORDS
+        ======================== -->
+        <section class="lesson-page" id="page-3">
+          <div class="spelling-section">
+            <h2>Spell the Words</h2>
+            <p style="margin: 0 0 10px;">Press “Play” to hear the word, then type the correct spelling.</p>
+
+            <!-- Centred, limited width handled by CSS (#spelling-list) -->
+            <div id="spelling-list" aria-label="Spelling practice list"></div>
+
+            <button class="check-btn" type="button" id="check-answers-btn">Check Answers</button>
+            <p id="spelling-result" class="result" aria-live="polite"></p>
+          </div>
+
+          <div class="nav-buttons">
+            <button class="nav-btn secondary" type="button" data-prev-page="2" aria-label="Back to previous page">
+              ← Back
+            </button>
+            <button class="nav-btn finish" type="button" id="continue-btn">
+              Continue
+            </button>
+          </div>
+        </section>
       </section>
-
-      <!-- =======================
-           PAGE 2: WORDS TO READ
-      ======================== -->
-      <section class="lesson-page" id="page-2">
-        <div class="reading-section">
-          <h2>Words to Read</h2>
-          <p>Click a word to hear it.</p>
-          <div class="word-list" id="word-list" aria-label="Words to read"></div>
-        </div>
-
-        <div class="nav-buttons">
-          <button class="nav-btn secondary" type="button" data-prev-page="1">← Back</button>
-          <button class="nav-btn primary" type="button" data-next-page="3">Next →</button>
-        </div>
-      </section>
-
-      <!-- =======================
-           PAGE 3: SPELL THE WORDS
-      ======================== -->
-      <section class="lesson-page" id="page-3">
-        <div class="spelling-section">
-          <h2>Spell the Words</h2>
-          <p>Press “Play” to hear the word, then type the correct spelling.</p>
-
-          <div id="spelling-list"></div>
-
-          <button class="check-btn" type="button" id="check-answers-btn">Check Answers</button>
-          <p id="spelling-result" class="result"></p>
-        </div>
-
-        <div class="nav-buttons">
-          <button class="nav-btn secondary" type="button" data-prev-page="2">← Back</button>
-          <button class="nav-btn finish" type="button" id="continue-btn">Continue</button>
-        </div>
-      </section>
-    </section>
-  </main>
+    </main>
+  </div>
 
   <!-- Shared -->
   <script src="../assets/js/level-core.js"></script>
@@ -115,4 +131,5 @@
   <script src="../activities/phonetic-focus.js"></script>
 </body>
 </html>
+
 
