@@ -1,1 +1,106 @@
+/* phonology/activities/read-spell-focus.css */
+
+h1, h2 { color: #222; }
+
+.section-divider {
+  margin: 28px auto;
+  border: none;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  width: 100%;
+}
+
+/* Reading grid */
+.reading-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.reading-word {
+  background: #ddd;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: filter 0.15s ease;
+}
+
+.reading-word:hover { filter: brightness(0.97); }
+
+/* Writing grid */
+.writing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.word-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sound-btn {
+  background: #0b57d0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: 800;
+  width: 44px;
+  height: 40px;
+}
+
+.word-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.25);
+}
+
+/* Controls */
+.btn-container {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  background: #4CAF50;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  transition: filter 0.15s ease;
+}
+
+.btn:hover { filter: brightness(0.95); }
+
+.result {
+  margin-top: 12px;
+  font-weight: 800;
+}
+
+/* Responsive tweaks */
+@media (max-width: 800px) {
+  .writing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .reading-grid { grid-template-columns: 1fr; }
+  .writing-grid { grid-template-columns: 1fr; }
+}
 
