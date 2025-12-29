@@ -1,1 +1,300 @@
+/* =========================
+   Level 1 – Shared Styling
+   ========================= */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f4f4;
+  color: #1f2937;
+  text-align: center;
+}
+
+/* =========================
+   Navigation / Breadcrumbs
+   ========================= */
+
+.activity-nav,
+.breadcrumb {
+  max-width: 900px;
+  margin: 0 auto 16px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.activity-nav a,
+.breadcrumb a {
+  color: #5b2bbf;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* =========================
+   Containers / Cards
+   ========================= */
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+   Headings
+   ========================= */
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 16px 0 8px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+button,
+.btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #111;
+}
+
+.btn-success,
+.check-btn {
+  background: #16a34a;
+  color: white;
+}
+
+button:hover,
+.btn:hover {
+  filter: brightness(0.95);
+}
+
+/* Navigation buttons under activities */
+.nav-buttons {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   Video
+   ========================= */
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid #111;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* =========================
+   Word Chips (Reading)
+   ========================= */
+
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.word,
+.reading-word {
+  background: #e5e5e5;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.word:hover,
+.reading-word:hover {
+  background: #d4d4d4;
+}
+
+/* =========================
+   Grids
+   ========================= */
+
+.reading-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.writing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+/* =========================
+   Inputs
+   ========================= */
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #2563eb;
+}
+
+/* =========================
+   Phonics Card (Short Vowel)
+   ========================= */
+
+.phonics-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: #f8e7e7;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.example-image-box {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.example-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   Lesson Pages (internal)
+   ========================= */
+
+.lesson-page {
+  display: none;
+}
+
+.lesson-page.active {
+  display: block;
+}
+
+/* =========================
+   Syllabication
+   ========================= */
+
+.word-list.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.syllable-inputs {
+  display: inline-flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.syllable-inputs input {
+  width: 110px;
+}
+
+/* =========================
+   Results / Feedback
+   ========================= */
+
+.result {
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  .reading-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .writing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .phonics-section {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 
