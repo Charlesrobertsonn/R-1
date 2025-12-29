@@ -1,55 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phonology • Level 1</title>
 
-  <!-- Shared for all phonology levels -->
-  <link rel="stylesheet" href="../assets/css/level.css" />
+  <!-- Shared lesson hub styling -->
+  <link rel="stylesheet" href="../../css/lesson-hub.css">
+
+  <style>
+    .back-link {
+      display: inline-block;
+      margin: 20px;
+      text-decoration: none;
+    }
+
+    .hub-main {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hub-title {
+      font-size: 42px;
+      margin-bottom: 60px;
+    }
+
+    .get-started {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 28px 56px;
+      font-size: 28px;
+      font-weight: 800;
+      border-radius: 20px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .get-started:hover {
+      transform: scale(1.05);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
+    }
+  </style>
 </head>
 
 <body>
-  <nav class="level-nav">
-    <a href="../index.html">← Back to Phonology</a>
-    <div class="nav-title">Phonology • Level 1</div>
-    <a href="../../index.html">Home</a>
-  </nav>
 
-  <main class="container">
-    <header class="page-hero">
-      <h1>Phonology • Level 1</h1>
-      <p class="subtitle">
-        Start here. Watch the video, practise reading, then practise spelling and syllables.
-      </p>
-    </header>
+  <!-- Back link -->
+  <a href="../index.html" class="back-link">← Back to Phonology</a>
 
-    <section class="card">
-      <div class="badge">Level 1</div>
-      <h2 class="section-title">Choose an activity</h2>
+  <!-- Main content -->
+  <main class="hub-main">
+    <h1 class="hub-title">Phonology • Level 1</h1>
 
-      <div class="card-grid">
-        <a class="activity-card" href="./phonetic-focus.html">
-          <div class="activity-title">▶ Get Started: Phonetic Focus</div>
-          <div class="activity-desc">Learn the target sound with a short video + guided practice.</div>
-        </a>
-
-        <a class="activity-card" href="./read-spell-focus.html">
-          <div class="activity-title">Read-Spell-Focus</div>
-          <div class="activity-desc">Read the words, then listen and spell them.</div>
-        </a>
-
-        <a class="activity-card" href="./syllabication.html">
-          <div class="activity-title">Syllabication</div>
-          <div class="activity-desc">Divide VC/CV words into syllables for stronger decoding.</div>
-        </a>
-      </div>
-    </section>
+    <a href="./phonetic-focus.html" class="get-started">▶ Get Started</a>
   </main>
 
-  <script src="../assets/js/level-core.js"></script>
 </body>
 </html>
+
 
 
 
