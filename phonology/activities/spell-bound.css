@@ -1,0 +1,189 @@
+/* Activity-only styling. Layout and nav come from level.css */
+
+.section-block h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.section-block {
+  margin-top: 6px;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: rgba(17,24,39,0.10);
+  margin: 18px 0;
+}
+
+/* Cloze passages */
+.passage-box,
+.sentence-box {
+  background: rgba(17,24,39,0.06);
+  border: 1px solid rgba(17,24,39,0.10);
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.word-bank {
+  background: rgba(17,24,39,0.06);
+  border: 1px solid rgba(17,24,39,0.10);
+  padding: 12px;
+  border-radius: 14px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Draggables (buttons) */
+.draggable {
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid rgba(17,24,39,0.12);
+  border-radius: 12px;
+  cursor: grab;
+  font-weight: 800;
+  user-select: none;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+/* Drop targets */
+.droppable {
+  display: inline-flex;
+  min-width: 96px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 2px dashed rgba(17,24,39,0.45);
+  vertical-align: middle;
+  line-height: 32px;
+  border-radius: 10px;
+  padding: 0 8px;
+  margin: 0 4px;
+}
+
+.droppable.is-correct {
+  border: 1px solid rgba(46,158,83,0.45);
+  background: rgba(46,158,83,0.14);
+}
+
+/* Sentence input */
+.sentence-input {
+  width: 100%;
+  min-height: 140px;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(17,24,39,0.12);
+  background: #ffffff;
+  resize: none;
+  outline: none;
+}
+
+.sentence-input:focus {
+  border-color: rgba(37,99,235,0.45);
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.10);
+}
+
+/* Progress */
+.progress-container {
+  width: min(720px, 100%);
+  background: rgba(17,24,39,0.10);
+  border-radius: 999px;
+  margin: 14px auto 0;
+  height: 14px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #2e9e53;
+  border-radius: 999px;
+  transition: width 0.35s ease-in-out;
+}
+
+/* Buttons */
+.btn-row {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(17,24,39,0.10);
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease;
+  background: rgba(17,24,39,0.06);
+  color: #111827;
+}
+
+.sb-btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.98);
+}
+
+.sb-btn-success {
+  background: #2e9e53;
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.sb-btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.sb-btn-danger {
+  background: #f44336;
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.sb-btn-warn {
+  background: #ffc107;
+  color: #111827;
+  border-color: rgba(17,24,39,0.18);
+}
+
+.bottom-continue {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.result {
+  font-weight: 800;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.micro-note {
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(17,24,39,0.70);
+  min-height: 1.1em;
+}
