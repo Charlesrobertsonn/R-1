@@ -1,260 +1,74 @@
-<!DOCTYPE html> 
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sound Deck</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sound Deck • Level 3</title>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Shared -->
+  <link rel="stylesheet" href="../assets/css/level.css" />
 
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-
-    header h1 {
-      font-size: 48px;
-      margin: 20px 0 10px 0;
-    }
-
-    main p {
-      font-size: 28px;
-      margin: 0 0 20px 0;
-      font-weight: 400;
-    }
-
-    .slideshow-container {
-      position: relative;
-      max-width: 800px;
-      width: 90%;
-      margin: 20px auto;
-      background: white;
-      padding: 40px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .slide {
-      display: none;
-      text-align: center;
-    }
-
-    /* Big letter button */
-    .letter {
-      font-size: 120px;
-      font-weight: 600;
-      margin: 20px auto;
-      color: #333;
-      text-transform: lowercase;
-
-      background: #e0e0e0;
-      border: none;
-      border-radius: 18px;
-      padding: 20px 60px;
-      cursor: pointer;
-
-      box-shadow: 0 6px 0 #bdbdbd;
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
-    }
-
-    .letter:active {
-      transform: translateY(4px);
-      box-shadow: 0 2px 0 #bdbdbd;
-    }
-
-    .letter:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(0,0,0,0.2);
-    }
-
-    .prev, .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 32px;
-      padding: 12px;
-      cursor: pointer;
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      border-radius: 6px;
-    }
-
-    .prev { left: 10px; }
-    .next { right: 10px; }
-
-    .prev:hover, .next:hover {
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    .dots-container {
-      margin-top: 20px;
-    }
-
-    .dot {
-      height: 15px;
-      width: 15px;
-      margin: 5px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    .active, .dot:hover {
-      background-color: #717171;
-    }
-
-    /* Continue button */
-    .continue-container {
-      margin-top: 30px;
-      display: none; /* ✅ hidden by default */
-    }
-
-    .continue-btn {
-      padding: 14px 28px;
-      font-size: 18px;
-      font-weight: 600;
-      background: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.1s ease, background 0.2s ease;
-    }
-
-    .continue-btn:hover {
-      background: #43a047;
-    }
-
-    .continue-btn:active {
-      transform: translateY(2px);
-    }
-  </style>
+  <!-- Activity-specific -->
+  <link rel="stylesheet" href="../activities/sound-deck.css" />
 </head>
 
 <body>
-  <header>
-    <h1>Sound Deck</h1>
-  </header>
+  <nav class="level-nav">
+    <a href="./index.html" data-press>← Back to Level 3</a>
+    <div class="nav-title">Level 3 • Sound Deck</div>
+    <a href="../index.html" data-press>Home</a>
+  </nav>
 
-  <main>
-    <p>Listen to my voice and sound them out!</p>
+  <div class="page-wrap">
+    <main class="container">
+      <header class="page-hero">
+        <h1>Sound Deck</h1>
+        <p class="subtitle">Listen to my voice and sound them out!</p>
+      </header>
 
-    <div class="slideshow-container">
+      <section class="card">
+        <div class="slideshow" aria-label="Sound deck slideshow">
+          <!-- Slides -->
+          <div class="slide" data-sound="sounds/s.mp3"><button class="letter" type="button" data-press>s</button></div>
+          <div class="slide" data-sound="sounds/m.mp3"><button class="letter" type="button" data-press>m</button></div>
+          <div class="slide" data-sound="sounds/n.mp3"><button class="letter" type="button" data-press>n</button></div>
+          <div class="slide" data-sound="sounds/f.mp3"><button class="letter" type="button" data-press>f</button></div>
+          <div class="slide" data-sound="sounds/t.mp3"><button class="letter" type="button" data-press>t</button></div>
+          <div class="slide" data-sound="sounds/a.mp3"><button class="letter" type="button" data-press>a</button></div>
 
-      <!-- Slides -->
-      <div class="slide" data-sound="sounds/s.mp3"><button class="letter">s</button></div>
-      <div class="slide" data-sound="sounds/m.mp3"><button class="letter">m</button></div>
-      <div class="slide" data-sound="sounds/n.mp3"><button class="letter">n</button></div>
-      <div class="slide" data-sound="sounds/f.mp3"><button class="letter">f</button></div>
-      <div class="slide" data-sound="sounds/t.mp3"><button class="letter">t</button></div>
-      <div class="slide" data-sound="sounds/a.mp3"><button class="letter">a</button></div>
+          <!-- Last slide -->
+          <div class="slide" data-sound="sounds/bat.mp3">
+            <button class="letter" type="button" data-press>bat</button>
+          </div>
 
-      <!-- LAST SLIDE -->
-      <div class="slide" data-sound="sounds/bat.mp3">
-        <button class="letter">bat</button>
-      </div>
+          <!-- Navigation -->
+          <button class="nav-arrow prev" id="prevBtn" type="button" aria-label="Previous slide" data-press>
+            &#10094;
+          </button>
+          <button class="nav-arrow next" id="nextBtn" type="button" aria-label="Next slide" data-press>
+            &#10095;
+          </button>
 
-      <!-- Navigation -->
-      <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-      <button class="next" onclick="changeSlide(1)">&#10095;</button>
+          <!-- Dots -->
+          <div class="dots-container" id="dots" aria-label="Slide dots"></div>
 
-      <!-- Dots -->
-      <div class="dots-container">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
-        <span class="dot" onclick="currentSlide(5)"></span>
-        <span class="dot" onclick="currentSlide(6)"></span>
-        <span class="dot" onclick="currentSlide(7)"></span>
-      </div>
-
-      <!-- Continue (only shows on last slide) -->
-      <div class="continue-container" id="continueContainer">
-        <button class="continue-btn" onclick="goToNext()">
-          Continue to Spelling Practice
-        </button>
-      </div>
-
-    </div>
-  </main>
+          <!-- Continue (shows only on last slide) -->
+          <div class="continue-container" id="continueContainer">
+            <a class="sd-btn sd-btn-success" href="./read-spell-review.html" data-press>
+              Continue to Spelling Practice
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <audio id="slideAudio" preload="auto"></audio>
 
-  <script>
-    let slideIndex = 0;
-    const audioEl = document.getElementById("slideAudio");
-    const continueContainer = document.getElementById("continueContainer");
-    let audioUnlocked = false;
-
-    function unlockAudioOnce() {
-      if (audioUnlocked) return;
-      audioUnlocked = true;
-      audioEl.play().then(() => audioEl.pause()).catch(() => {});
-    }
-
-    document.addEventListener("pointerdown", unlockAudioOnce, { once: true });
-
-    function showSlides(n) {
-      const slides = document.getElementsByClassName("slide");
-      const dots = document.getElementsByClassName("dot");
-
-      if (n >= slides.length) slideIndex = slides.length - 1;
-      if (n < 0) slideIndex = 0;
-
-      for (let slide of slides) slide.style.display = "none";
-      for (let dot of dots) dot.classList.remove("active");
-
-      slides[slideIndex].style.display = "block";
-      dots[slideIndex].classList.add("active");
-
-      /* ✅ Show Continue button ONLY on last slide */
-      if (slideIndex === slides.length - 1) {
-        continueContainer.style.display = "block";
-      } else {
-        continueContainer.style.display = "none";
-      }
-    }
-
-    function playSlideSound(soundUrl) {
-      audioEl.pause();
-      audioEl.currentTime = 0;
-      audioEl.src = soundUrl;
-      audioEl.play().catch(() => {});
-    }
-
-    document.querySelectorAll(".letter").forEach(btn => {
-      btn.addEventListener("click", () => {
-        unlockAudioOnce();
-        const slide = btn.closest(".slide");
-        playSlideSound(slide.dataset.sound);
-      });
-    });
-
-    function changeSlide(n) {
-      slideIndex += n;
-      showSlides(slideIndex);
-    }
-
-    function currentSlide(n) {
-      slideIndex = n - 1;
-      showSlides(slideIndex);
-    }
-
-    function goToNext() {
-      window.location.href = "read-spell-review.html";
-    }
-
-    window.onload = () => showSlides(slideIndex);
-  </script>
+  <!-- Shared -->
+  <script src="../assets/js/level-core.js"></script>
+  <!-- Activity-specific -->
+  <script src="../activities/sound-deck.js"></script>
 </body>
 </html>
 
