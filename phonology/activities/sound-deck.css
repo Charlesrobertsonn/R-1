@@ -1,0 +1,161 @@
+/* Sound Deck (activity-only). Layout + nav comes from level.css */
+
+.slideshow {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 18px;
+  border-radius: 18px;
+}
+
+.slide {
+  display: none;
+  text-align: center;
+  padding: 18px 0 8px;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* Big letter button */
+.letter {
+  font-size: clamp(64px, 9vw, 120px);
+  font-weight: 800;
+  margin: 18px auto;
+  color: #111827;
+  text-transform: lowercase;
+
+  background: rgba(17,24,39,0.10);
+  border: 1px solid rgba(17,24,39,0.12);
+  border-radius: 18px;
+  padding: 18px 60px;
+  cursor: pointer;
+
+  box-shadow: 0 6px 0 rgba(17,24,39,0.20);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.12s ease;
+}
+
+.letter:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(17,24,39,0.20);
+  filter: brightness(0.98);
+}
+
+.letter:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.18), 0 6px 0 rgba(17,24,39,0.20);
+}
+
+/* Arrows */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+
+  border: 1px solid rgba(17,24,39,0.12);
+  border-radius: 10px;
+  background: rgba(17,24,39,0.55);
+  color: #fff;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform .12s ease, filter .12s ease, background .12s ease;
+}
+
+.nav-arrow:hover {
+  background: rgba(17,24,39,0.75);
+}
+
+.nav-arrow:active {
+  transform: translateY(-50%) translateY(1px);
+  filter: brightness(0.98);
+}
+
+.nav-arrow.prev { left: 10px; }
+.nav-arrow.next { right: 10px; }
+
+.nav-arrow[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Dots */
+.dots-container {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(17,24,39,0.25);
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease, background .12s ease;
+}
+
+.dot:hover {
+  transform: translateY(-1px);
+  background: rgba(17,24,39,0.35);
+}
+
+.dot.active {
+  background: rgba(17,24,39,0.62);
+}
+
+/* Continue */
+.continue-container {
+  margin-top: 18px;
+  display: none;
+  justify-content: center;
+}
+
+.continue-container.show {
+  display: flex;
+}
+
+/* Local button utility (matches your other level-3 activities) */
+.sd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(17,24,39,0.10);
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease;
+  background: rgba(17,24,39,0.06);
+  color: #111827;
+}
+
+.sd-btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.98);
+}
+
+.sd-btn-success {
+  background: #2e9e53;
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
+
+@media (max-width: 520px) {
+  .letter {
+    padding: 16px 34px;
+  }
+}
