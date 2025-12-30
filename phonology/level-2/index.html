@@ -5,56 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phonology • Level 2</title>
 
-  <!-- Shared lesson hub styling -->
-  <link rel="stylesheet" href="../assets/css/level.css">
+  <!-- Level shared styling -->
+  <link rel="stylesheet" href="../assets/css/level.css" />
 </head>
+
 <body>
 
-  <!-- Back link -->
-  <a href="../index.html" style="display:inline-block; margin: 20px;">
-    ← Back to Phonology
-  </a>
+  <div class="level-shell">
 
-  <!-- Main content -->
-  <main
-    style="
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    "
-  >
-    <!-- Title -->
-    <h1 style="font-size: 42px; margin-bottom: 60px;">
-      Phonology • Level 2
-    </h1>
+    <!-- Top bar -->
+    <div class="level-topbar">
+      <a class="back-link" href="../index.html">← Back to Phonology</a>
+    </div>
 
-    <!-- Get Started button -->
-    <a
-      href="./read-rally.html"
-      style="
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        padding: 28px 56px;
-        font-size: 28px;
-        font-weight: 800;
-        border-radius: 20px;
-        background: #2563eb;
-        color: white;
-        text-decoration: none;
-        box-shadow: 0 12px 30px rgba(37,99,235,0.35);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      "
-      onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 18px 40px rgba(37,99,235,0.45)';"
-      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 12px 30px rgba(37,99,235,0.35)';"
-    >
-      ▶ Get Started
-    </a>
+    <!-- Main content -->
+    <main class="level-main">
+      <h1 class="level-title">Phonology • Level 2</h1>
+      <p class="level-subtitle">
+        Continue building your reading speed and accuracy.
+      </p>
 
-  </main>
+      <a
+        class="start-btn"
+        href="./read-rally.html"
+        aria-label="Start Level 2"
+      >
+        ▶ Get Started
+      </a>
+    </main>
+
+  </div>
+
+  <!-- Level shared JS -->
+  <script src="../assets/js/level-core.js"></script>
 
 </body>
 </html>
+
