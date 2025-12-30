@@ -1,80 +1,21 @@
 /* phonology/activities/read-spell-focus.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* =========================
-   PAGE LAYOUT (NEW)
-   - Keeps the page off the edges
-   - Works whether you wrap with .container or .card
-========================= */
-
-/* If your HTML uses <main class="container"> like your other activities */
-.container{
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 24px 60px;
-}
-
-/* If your activity sits inside a shared .card, keep it nicely padded too */
-.card{
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* =========================
-   HEADINGS & INSTRUCTIONS (NEW)
-   - Centers headings and the short helper text under them
-========================= */
-
-h1, h2{
-  text-align: center;
-}
-
-/* If you add these classes later, they will work automatically */
-.page-subtitle,
-.task-description,
-.instructions{
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 18px;
-  color: rgba(0,0,0,0.70);
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* Also catch common “heading then paragraph” patterns without needing classes */
-h1 + p,
-h2 + p{
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 18px;
-  color: rgba(0,0,0,0.70);
-  line-height: 1.5;
-}
-
-/* =========================
-   YOUR ORIGINAL STYLES
-========================= */
-
 /* Keep this activity looking centred + not full-page-wide */
+
+/* --- Section blocks: centre headings + helper text --- */
 .section-block {
   padding: 6px 0 2px;
-  text-align: left;
+  text-align: center; /* changed from left */
 }
 
-/* Override the left-align on headings inside section blocks */
 .section-block h2 {
   margin: 14px 0 6px;
-  text-align: center; /* NEW */
 }
 
-/* Keep helper text centered too */
 .helper {
   margin: 0 0 14px;
   color: rgba(0,0,0,0.75);
-  text-align: center;       /* NEW */
-  max-width: 720px;         /* NEW */
-  margin-left: auto;        /* NEW */
-  margin-right: auto;       /* NEW */
 }
 
 /* Divider inside the card */
@@ -111,7 +52,7 @@ h2 + p{
 
 /* ---------- Writing grid ---------- */
 .writing-grid {
-  width: min(980px, 100%);
+  width: min(900px, 100%); /* tightened from 980px so it doesn't feel too wide */
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -206,16 +147,12 @@ h2 + p{
 
 .nav-btn:hover { filter: brightness(0.96); }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
+/* Responsive */
 @media (max-width: 900px) {
   .writing-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
-  .container { padding: 28px 16px 44px; } /* NEW */
   .reading-grid { grid-template-columns: 1fr; }
   .writing-grid { grid-template-columns: 1fr; }
 }
