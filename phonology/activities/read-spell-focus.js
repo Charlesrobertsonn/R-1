@@ -20,6 +20,7 @@ function speak(word) {
 
 // ---------- Reading ----------
 function generateReadingWords() {
+  if (!readingGrid) return;
   readingGrid.innerHTML = "";
 
   words.forEach((word) => {
@@ -38,11 +39,12 @@ function shuffle(arr) {
 }
 
 function generateWritingTask() {
-  writingGrid.innerHTML = "";
-  resultMessage.textContent = "";
+  if (!writingGrid) return;
 
-  // Your original was slice(0,9) but you only have 6 words
-  // We'll repeat/shuffle to fill 9 slots for more practice
+  writingGrid.innerHTML = "";
+  if (resultMessage) resultMessage.textContent = "";
+
+  // Fill 9 slots for more practice (repeats are fine)
   const pool = shuffle([...words, ...words, ...words]).slice(0, 9);
 
   pool.forEach((word) => {
@@ -51,7 +53,7 @@ function generateWritingTask() {
 
     const soundBtn = document.createElement("button");
     soundBtn.type = "button";
-    soundBtn.className = "sound-btn";
+    soundBtn.className = "audio-btn"; // matches your CSS
     soundBtn.textContent = "🔊";
     soundBtn.addEventListener("click", () => speak(word));
 
@@ -75,6 +77,8 @@ function generateWritingTask() {
 }
 
 function checkAnswers() {
+  if (!writingGrid) return;
+
   const inputs = writingGrid.querySelectorAll("input[data-word]");
   let correctCount = 0;
 
@@ -92,45 +96,20 @@ function checkAnswers() {
     }
   });
 
-  resultMessage.textContent = `You got ${correctCount} / ${inputs.length} correct.`;
-}
-
-function hint() {
-  const inputs = [...writingGrid.querySelectorAll("input[data-word]")];
-  const empty = inputs.find((i) => i.value.trim() === "");
-  const target = empty || inputs.find((i) => i.style.border.includes("d32f2f"));
-
-  if (!target) {
-    resultMessage.textContent = "No hints needed — you're all good!";
-    return;
+  if (resultMessage) {
+    resultMessage.textContent = `You got ${correctCount} / ${inputs.length} correct.`;
   }
-
-  const word = target.getAttribute("data-word");
-  target.value = word.slice(0, 1); // first letter hint
-  target.focus();
-  resultMessage.textContent = `Hint added (first letter).`;
-}
-
-function goToNextSet() {
-  generateWritingTask();
-  resultMessage.textContent = "New set generated!";
 }
 
 function continueToNextActivity() {
   window.location.href = "syllabication.html";
 }
 
-// ---------- Button wiring ----------
-document.getElementById("btn-go")?.addEventListener("click", () => {
-  // "Go" = read all words once (quick model)
-  words.forEach((w, i) => setTimeout(() => speak(w), i * 650));
-});
-
-document.getElementById("btn-check")?.addEventListener("click", checkAnswers);
-document.getElementById("btn-next")?.addEventListener("click", goToNextSet);
-document.getElementById("btn-hint")?.addEventListener("click", hint);
-document.getElementById("continue-btn")?.addEventListener("click", continueToNextActivity);
+// ---------- Button wiring (ONLY Check + Continue) ----------
+document.getElementById("checkBtn")?.addEventListener("click", checkAnswers);
+document.getElementById("continueBtn")?.addEventListener("click", continueToNextActivity);
 
 // ---------- Init ----------
 generateReadingWords();
 generateWritingTask();
+
