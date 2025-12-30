@@ -10,7 +10,9 @@
   --border: rgba(17,24,39,0.08);
 }
 
-*{ box-sizing:border-box; }
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -19,7 +21,13 @@ body{
   color: var(--text);
 }
 
-a{ color: inherit; }
+a{
+  color: inherit;
+}
+
+/* =========================
+   LEVEL HUB (index.html)
+========================= */
 
 .level-shell{
   min-height: 100vh;
@@ -44,6 +52,7 @@ a{ color: inherit; }
   padding:10px 12px;
   border-radius: 12px;
 }
+
 .back-link:hover{
   background: rgba(37,99,235,0.08);
 }
@@ -88,18 +97,89 @@ a{ color: inherit; }
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
   border: 1px solid rgba(255,255,255,0.2);
 }
+
 .start-btn:hover{
   transform: scale(1.04);
   box-shadow: 0 18px 42px rgba(37,99,235,0.45);
 }
+
 .start-btn:active{
   transform: scale(1.01);
   filter: brightness(0.98);
 }
 
-@media (max-width: 520px){
-  .level-title{ font-size: 34px; }
-  .start-btn{ font-size: 20px; padding: 18px 34px; }
+/* =========================
+   ACTIVITY TOP NAV
+   (phonetic-focus, read-spell,
+    syllabication, etc.)
+========================= */
+
+.level-nav{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 24px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
 }
 
+.level-nav a{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(17,24,39,0.06);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--text);
+  transition: transform .12s ease, filter .12s ease, background .12s ease;
+}
 
+.level-nav a:hover{
+  background: rgba(17,24,39,0.09);
+  transform: translateY(-1px);
+}
+
+.level-nav a:active{
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+.level-nav .nav-title{
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px){
+  .level-nav{
+    padding: 12px 12px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .level-nav .nav-title{
+    order: 3;
+    width: 100%;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 520px){
+  .level-title{
+    font-size: 34px;
+  }
+  .start-btn{
+    font-size: 20px;
+    padding: 18px 34px;
+  }
+}
