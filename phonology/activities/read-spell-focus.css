@@ -6,7 +6,7 @@
 /* --- Section blocks: centre headings + helper text --- */
 .section-block {
   padding: 6px 0 2px;
-  text-align: center; /* changed from left */
+  text-align: center; /* centred instead of left */
 }
 
 .section-block h2 {
@@ -47,12 +47,17 @@
   transition: filter 0.15s ease, transform 0.1s ease;
 }
 
-.reading-word:hover { filter: brightness(0.97); }
-.reading-word:active { transform: scale(0.99); }
+.reading-word:hover {
+  filter: brightness(0.97);
+}
+
+.reading-word:active {
+  transform: scale(0.99);
+}
 
 /* ---------- Writing grid ---------- */
 .writing-grid {
-  width: min(900px, 100%); /* tightened from 980px so it doesn't feel too wide */
+  width: min(900px, 100%); /* tightened so it doesn’t feel edge-to-edge */
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -79,7 +84,7 @@
 
 .word-input {
   width: 100%;
-  padding: 12px 12px;
+  padding: 12px;
   font-size: 16px;
   border-radius: 12px;
   border: 1px solid rgba(0,0,0,0.25);
@@ -116,7 +121,9 @@
   color: #111;
 }
 
-.btn:hover { filter: brightness(0.96); }
+.btn:hover {
+  filter: brightness(0.96);
+}
 
 .result {
   text-align: center;
@@ -145,15 +152,22 @@
   color: #fff;
 }
 
-.nav-btn:hover { filter: brightness(0.96); }
+.nav-btn:hover {
+  filter: brightness(0.96);
+}
 
-/* Responsive */
+/* ---------- Responsive ---------- */
 @media (max-width: 900px) {
-  .writing-grid { grid-template-columns: repeat(2, 1fr); }
+  .writing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 640px) {
-  .reading-grid { grid-template-columns: 1fr; }
-  .writing-grid { grid-template-columns: 1fr; }
+  .reading-grid {
+    grid-template-columns: 1fr;
+  }
+  .writing-grid {
+    grid-template-columns: 1fr;
+  }
 }
-
