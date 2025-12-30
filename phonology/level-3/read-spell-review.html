@@ -1,267 +1,73 @@
-<!DOCTYPE html> 
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Chapter - Spelling Practice</title>
-    <link rel="stylesheet" href="../styles/styles.css"> <!-- Adjust if needed -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #f4f4f4;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Read & Spell Review • Level 3</title>
 
-        .activity-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-        }
+  <!-- Shared -->
+  <link rel="stylesheet" href="../assets/css/level.css" />
 
-        h2 {
-            color: #333;
-        }
-
-        .word-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        /* ✅ Make the review words BUTTONS */
-        .word-grid button.word-btn {
-            background: #ddd;
-            padding: 12px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            font-size: 16px;
-            transition: transform 0.1s ease, background 0.2s ease;
-        }
-
-        .word-grid button.word-btn:hover {
-            background: #cfcfcf;
-        }
-
-        .word-grid button.word-btn:active {
-            transform: translateY(2px);
-        }
-
-        .word-grid button.word-btn:focus {
-            outline: 3px solid rgba(0,0,0,0.25);
-            outline-offset: 2px;
-        }
-
-        .spelling-section {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .play-btn, .check-btn {
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .play-btn { background: blue; color: white; }
-        .check-btn { background: green; color: white; }
-
-        input {
-            padding: 10px;
-            width: 200px;
-            text-align: center;
-            border-radius: 5px;
-        }
-
-        .result {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .correct { color: green; }
-        .incorrect { color: red; }
-
-        .image-box {
-            position: absolute;
-            left: -300px;
-            top: 50%;
-            width: 200px;
-            height: 200px;
-            background: #eee;
-            border-radius: 8px;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* ✅ Continue button (Back to Level 3) */
-        .continue-container {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .continue-btn {
-            padding: 14px 28px;
-            font-size: 18px;
-            font-weight: 600;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.1s ease, background 0.2s ease;
-        }
-
-        .continue-btn:hover {
-            background: #43a047;
-        }
-
-        .continue-btn:active {
-            transform: translateY(2px);
-        }
-    </style>
+  <!-- Activity-specific -->
+  <link rel="stylesheet" href="../activities/read-spell-review.css" />
 </head>
+
 <body>
+  <nav class="level-nav">
+    <a href="./index.html" data-press>← Back to Level 3</a>
+    <div class="nav-title">Level 3 • Read & Spell Review</div>
+    <a href="../index.html" data-press>Home</a>
+  </nav>
 
-    <header>
-        <h1>Learning Chapter - Spelling Practice</h1>
-    </header>
+  <div class="page-wrap">
+    <main class="container">
+      <header class="page-hero">
+        <h1>Read &amp; Spell Review</h1>
+        <p class="subtitle">Review the words, then practise spelling by listening and typing.</p>
+      </header>
 
-    <main class="activity-container">
-        <section>
-            <h2>Let's review words we've learnt</h2>
+      <section class="card">
+        <section class="section-block" aria-label="Review words">
+          <h2>Let’s review words we’ve learnt</h2>
+          <div class="word-grid" id="reviewGrid"></div>
 
-            <div class="word-grid">
-                <!-- ✅ Changed from <p> to <button> -->
-                <button class="word-btn" type="button" onclick="reviewWord('bat')">bat</button>
-                <button class="word-btn" type="button" onclick="reviewWord('mat')">mat</button>
-                <button class="word-btn" type="button" onclick="reviewWord('fan')">fan</button>
-                <button class="word-btn" type="button" onclick="reviewWord('rat')">rat</button>
-
-                <button class="word-btn" type="button" onclick="reviewWord('lap')">lap</button>
-                <button class="word-btn" type="button" onclick="reviewWord('cap')">cap</button>
-                <button class="word-btn" type="button" onclick="reviewWord('pen')">pen</button>
-                <button class="word-btn" type="button" onclick="reviewWord('sun')">sun</button>
-
-                <button class="word-btn" type="button" onclick="reviewWord('dog')">dog</button>
-                <button class="word-btn" type="button" onclick="reviewWord('cat')">cat</button>
-                <button class="word-btn" type="button" onclick="reviewWord('run')">run</button>
-                <button class="word-btn" type="button" onclick="reviewWord('hat')">hat</button>
-            </div>
-
-            <div class="image-box" id="image-box">
-                <img id="word-image" src="" alt="Word Image" width="150">
-            </div>
-
-            <h2>Spelling Practice</h2>
-            <p>Press the play button to hear the word, then type the correct spelling.</p>
-
-            <div id="word-container"></div>
-
-            <button class="check-btn" onclick="checkSpelling()">Check Answers</button>
-            <p id="spelling-result" class="result"></p>
-
-            <!-- ✅ Back to Level 3 button -->
-            <div class="continue-container">
-                <button class="continue-btn" type="button" onclick="goBackToLevel()">
-                    Back to Level 3
-                </button>
-            </div>
-
+          <div class="image-box" id="imageBox" aria-hidden="true">
+            <img id="wordImage" src="" alt="" />
+          </div>
         </section>
+
+        <hr class="divider" />
+
+        <section class="section-block" aria-label="Spelling practice">
+          <h2>Spelling Practice</h2>
+          <p class="hint-text">Press Play to hear the word, then type the correct spelling.</p>
+
+          <div id="wordContainer"></div>
+
+          <div class="actions">
+            <button class="rs-btn rs-btn-success" id="checkBtn" type="button" data-press>
+              Check Answers
+            </button>
+          </div>
+
+          <p id="spellingResult" class="result" aria-live="polite"></p>
+
+          <div class="bottom-continue">
+            <a class="rs-btn rs-btn-secondary" href="./index.html" data-press>Back to Level 3</a>
+          </div>
+        </section>
+      </section>
     </main>
+  </div>
 
+  <!-- One shared audio element -->
+  <audio id="sharedAudio" preload="auto"></audio>
 
-    <script>
-        const words = ["bat", "mat", "fan", "rat", "lap"];
-        const container = document.getElementById("word-container");
-
-        // ✅ One shared audio element is smoother than new Audio() each time
-        const sharedAudio = new Audio();
-        let audioUnlocked = false;
-
-        function unlockAudioOnce() {
-            if (audioUnlocked) return;
-            audioUnlocked = true;
-            sharedAudio.play().then(() => sharedAudio.pause()).catch(() => {});
-        }
-        document.addEventListener("pointerdown", unlockAudioOnce, { once: true });
-
-        words.forEach((word, index) => {
-            const section = document.createElement("div");
-            section.classList.add("spelling-section");
-            section.innerHTML = `
-                <p>Word ${index + 1}:</p>
-                <button class="play-btn" type="button" aria-label="Play ${word}" onclick="playAudio('${word}')">🔊 Play</button>
-                <input type="text" id="word${index + 1}" aria-label="Type spelling for word ${index + 1}">
-                <span id="result${index + 1}"></span>
-            `;
-            container.appendChild(section);
-        });
-
-        function playAudio(word) {
-            unlockAudioOnce();
-            sharedAudio.pause();
-            sharedAudio.currentTime = 0;
-            sharedAudio.src = `audio/${word}.mp3`;
-            sharedAudio.play().catch(() => {});
-        }
-
-        // ✅ Review grid: click word -> play sound (and optionally show image)
-        function reviewWord(word) {
-            playAudio(word);
-            showImage(word); // keep this line if you still want the image popup
-        }
-
-        function showImage(word) {
-            const imageBox = document.getElementById("image-box");
-            const imageElement = document.getElementById("word-image");
-            imageElement.src = `images/${word}.png`;
-            imageElement.alt = word;
-            imageBox.style.display = "flex";
-        }
-
-        function checkSpelling() {
-            let score = 0;
-
-            words.forEach((word, index) => {
-                let input = document.getElementById(`word${index + 1}`).value.trim().toLowerCase();
-                let resultSpan = document.getElementById(`result${index + 1}`);
-
-                if (input === word) {
-                    resultSpan.textContent = "✔";
-                    resultSpan.className = "correct";
-                    score++;
-                } else {
-                    resultSpan.textContent = "✘";
-                    resultSpan.className = "incorrect";
-                }
-            });
-
-            let resultText = score === words.length
-                ? "Excellent! ✅ You got all correct!"
-                : `You got ${score}/${words.length} correct. Try again! ❌`;
-
-            const resultEl = document.getElementById("spelling-result");
-            resultEl.textContent = resultText;
-            resultEl.style.color = score === words.length ? "green" : "red";
-        }
-
-        /* ✅ Back to level-3/index.html */
-        function goBackToLevel() {
-            window.location.href = "index.html";
-        }
-    </script>
-
+  <!-- Shared -->
+  <script src="../assets/js/level-core.js"></script>
+  <!-- Activity-specific -->
+  <script src="../activities/read-spell-review.js"></script>
 </body>
 </html>
+
 
