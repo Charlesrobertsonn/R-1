@@ -1,0 +1,185 @@
+/* Activity-specific styles only (layout is handled by level.css) */
+
+.section-block {
+  margin-top: 18px;
+}
+
+.section-block h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+/* Timer */
+.timer-section {
+  margin: 6px auto 18px;
+  padding: 14px;
+  border: 1px solid rgba(17,24,39,0.12);
+  border-radius: 14px;
+  background: rgba(17,24,39,0.03);
+}
+
+.timer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.timer {
+  margin: 10px 0 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* Word grid */
+.word-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 10px auto 0;
+  max-width: 700px;
+}
+
+.word {
+  padding: 12px;
+  background: rgba(17,24,39,0.06);
+  border: 1px solid rgba(17,24,39,0.10);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  transition: transform .12s ease, filter .12s ease, background .12s ease;
+}
+
+.word:hover {
+  background: rgba(17,24,39,0.09);
+  transform: translateY(-1px);
+}
+
+.word:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+.word-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.phonemes {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+.audio {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 18px;
+}
+
+/* Sentences */
+.sentence-list {
+  text-align: left;
+  margin: 10px auto 0;
+  max-width: 700px;
+}
+
+.sentence {
+  padding: 10px 12px;
+  background: rgba(17,24,39,0.06);
+  border: 1px solid rgba(17,24,39,0.10);
+  border-radius: 14px;
+  margin: 8px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  transition: transform .12s ease, filter .12s ease, background .12s ease;
+}
+
+.sentence:hover {
+  background: rgba(17,24,39,0.09);
+  transform: translateY(-1px);
+}
+
+.sentence:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+/* Footer */
+.footer-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Buttons (activity-local, since your shared CSS doesn't define btn utilities yet) */
+.rr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(17,24,39,0.10);
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease;
+  background: rgba(17,24,39,0.06);
+  color: #111827;
+}
+
+.rr-btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.98);
+}
+
+.rr-btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.rr-btn-success {
+  background: #2e9e53;
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.rr-btn-secondary {
+  background: rgba(17,24,39,0.06);
+  color: #111827;
+}
+
+/* Responsive grid */
+@media (max-width: 720px) {
+  .word-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .word-list {
+    grid-template-columns: 1fr;
+  }
+}
