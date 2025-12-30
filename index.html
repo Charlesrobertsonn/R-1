@@ -11,6 +11,7 @@
   <!-- Navigation Bar -->
   <nav id="main-nav" class="navbar">
     <img src="images/logo.png" alt="Root Reading Logo" class="nav-logo" />
+
     <ul class="nav-list">
       <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
       <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
@@ -20,51 +21,53 @@
     </ul>
   </nav>
 
-  <!-- Main Content -->
+  <!-- Hero -->
   <header id="main-header" class="header">
-    <h1>Root Reading</h1>
-    <p>
-      Welcome to <strong>Root Reading</strong>, a simple platform to learn English step by step.
-    </p>
-    <p>
-      Learning is organised into levels. Each level contains short activities that build
-      pronunciation, reading, and spelling in a clear sequence.
-    </p>
+    <div class="home-wrap">
+      <h1>Root Reading</h1>
+      <p>
+        Welcome to <strong>Root Reading</strong>, a simple platform to learn English step by step.
+      </p>
+      <p>
+        Learning is organised into levels. Each level contains short activities that build
+        pronunciation, reading, and spelling in a clear sequence.
+      </p>
+    </div>
   </header>
 
-<section id="learning-paths" class="features-section">
-  <h2>Start Learning</h2>
+  <!-- Start Learning -->
+  <section id="learning-paths" class="features-section">
+    <div class="home-wrap">
+      <h2>Start Learning</h2>
 
-  <div class="features-list">
+      <div class="features-list">
+        <!-- Phonology -->
+        <div class="feature-item">
+          <a href="phonology/" class="feature-link">
+            Phonology
+          </a>
+        </div>
 
-    <!-- Phonology -->
-    <div class="feature-item">
-      <a href="phonology/" class="feature-link">
-        Phonology
-      </a>
+        <!-- Morphology (Coming Soon) -->
+        <div class="feature-item is-disabled">
+          <div class="feature-link" aria-disabled="true">
+            Morphology
+            <div class="feature-subtext">Coming soon</div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- Morphology (Coming Soon) -->
-    <div class="feature-item">
-      <a href="#" class="feature-link" aria-disabled="true" onclick="return false;">
-        Morphology
-        <div class="feature-subtext">Coming soon</div>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-
+  </section>
 
   <!-- Footer -->
   <footer id="main-footer" class="footer">
-    <ul class="footer-list">
-      <li class="footer-item"><span class="footer-link">Terms of Service (coming soon)</span></li>
-      <li class="footer-item"><span class="footer-link">Privacy Policy (coming soon)</span></li>
-      <li class="footer-item"><span class="footer-link">Follow us on Social Media (coming soon)</span></li>
-    </ul>
+    <div class="home-wrap">
+      <ul class="footer-list">
+        <li class="footer-item"><span class="footer-link">Terms of Service (coming soon)</span></li>
+        <li class="footer-item"><span class="footer-link">Privacy Policy (coming soon)</span></li>
+        <li class="footer-item"><span class="footer-link">Follow us on Social Media (coming soon)</span></li>
+      </ul>
+    </div>
   </footer>
 </body>
 </html>
-
