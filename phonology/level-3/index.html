@@ -5,111 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phonology • Level 3</title>
 
-  <!-- Shared lesson hub styles -->
-  <link rel="stylesheet" href="../../css/lesson-hub.css">
+  <!-- Shared level hub styles (same as Level 1 & 2) -->
+  <link rel="stylesheet" href="../assets/css/level.css" />
 </head>
 
 <body>
+  <div class="level-shell">
+    <!-- Top bar -->
+    <nav class="level-topbar">
+      <a class="back-link" href="../index.html">← Back to Phonology</a>
+    </nav>
 
-  <!-- Back link -->
-  <nav class="activity-nav">
-    <a href="../index.html">← Back to Phonology</a>
-  </nav>
+    <!-- Centered hub content -->
+    <main class="level-main">
+      <h1 class="level-title">Phonology • Level 3</h1>
+      <p class="level-subtitle">Select an activity to begin, or hit Get Started to follow the sequence.</p>
 
-  <main class="features-section">
-    <h1>Phonology • Level 3</h1>
-    <p>Select an activity to begin.</p>
+      <!-- Main CTA (matches Level 1 & 2) -->
+      <a class="start-btn" href="./sound-deck.html">Get Started</a>
 
-    <!-- ================= REVISION ================= -->
-    <h2>Revision</h2>
+      <!-- Activity list (simple + clean, no new shared CSS needed) -->
+      <section class="hub-list" aria-label="Level 3 activities">
+        <h2 class="hub-heading">Revision</h2>
+        <ul class="hub-items">
+          <li><a href="./sound-deck.html">1) Sound Cards</a></li>
+          <li><a href="./read-spell-review.html">2) Reading &amp; Spelling Review</a></li>
+        </ul>
 
-    <div class="features-list">
-      <div class="feature-item">
-        <a class="feature-link" href="./sound-deck.html">
-          <div><strong>1) Sound Cards</strong></div>
-          <div class="feature-subtext">
-            Optional Description.
-          </div>
-        </a>
-      </div>
+        <h2 class="hub-heading">Learning</h2>
+        <ul class="hub-items">
+          <li><a href="./phonetic-focus.html">3) Phonetic Focus</a></li>
+          <li><a href="./read-spell-focus.html">4) Read Spell Focus</a></li>
+          <li><a href="./syllabication.html">5) Syllabication</a></li>
+        </ul>
 
-      <div class="feature-item">
-        <a class="feature-link" href="./read-spell-review.html">
-          <div><strong>2) Reading & Spelling Review</strong></div>
-          <div class="feature-subtext">
-            Optional Description.
-          </div>
-        </a>
-      </div>
-    </div>
+        <h2 class="hub-heading">Reinforcement</h2>
+        <ul class="hub-items">
+          <li><a href="./read-rally.html">6) Read Rally</a></li>
+          <li><a href="./spell-bound.html">7) Spell Bound</a></li>
+          <li><a href="./comic.html">8) Comic</a></li>
+        </ul>
+      </section>
+    </main>
+  </div>
 
-    <!-- ================= LEARNING ================= -->
-    <h2>Learning</h2>
-
-    <div class="features-list">
-      <div class="feature-item">
-        <a class="feature-link" href="./phonetic-focus.html">
-          <div><strong>3) Phonetic Focus</strong></div>
-          <div class="feature-subtext">
-            Optional Description.
-          </div>
-        </a>
-      </div>
-
-      <div class="feature-item">
-        <a class="feature-link" href="./read-spell-focus.html">
-          <div><strong>4) Read Spell Focus</strong></div>
-          <div class="feature-subtext">
-            Optional Description.
-          </div>
-        </a>
-      </div>
-    
-      <div class="feature-item">
-        <a class="feature-link" href="./syllabication.html">
-          <div><strong>5) Syllabication</strong></div>
-          <div class="feature-subtext">
-            Optional Description.
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- ================= REINFORCEMENT ================= -->
-    <h2>Reinforcement</h2>
-
-    <div class="features-list">
-      <div class="feature-item">
-        <a class="feature-link" href="./read-rally.html">
-          <div><strong>6) Read Rally</strong></div>
-          <div class="feature-subtext">
-            Optional Description
-          </div>
-        </a>
-      </div>
-
-      <div class="feature-item">
-        <a class="feature-link" href="./spell-bound.html">
-          <div><strong>7) Spell Bound</strong></div>
-          <div class="feature-subtext">
-            Optional Description
-          </div>
-        </a>
-      </div>
-      
-      <div class="feature-item">
-        <a class="feature-link" href="./comic.html">
-          <div><strong>8) Comic</strong></div>
-          <div class="feature-subtext">
-            Optional Description
-          </div>
-        </a>
-      </div>
-    </div>
-
-  </main>
-
+  <!-- Tiny local styling (optional) -->
+  <style>
+    /* Keeps the list readable without introducing new shared CSS */
+    .hub-list {
+      width: 100%;
+      max-width: 720px;
+      margin-top: 26px;
+      text-align: left;
+    }
+    .hub-heading {
+      margin: 18px 0 8px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .hub-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+    .hub-items a {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration: none;
+      background: rgba(17,24,39,0.06);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      color: var(--text);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .hub-items a:hover {
+      background: rgba(17,24,39,0.09);
+      transform: translateY(-1px);
+    }
+  </style>
 </body>
 </html>
-
-
