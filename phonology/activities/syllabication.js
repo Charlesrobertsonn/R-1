@@ -96,11 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
     wordEl.addEventListener("click", () => readWord(wordEl.textContent.trim()));
   });
 
-  // --- Finish button ---
-  // If your HTML uses onclick="finishLevel()", keep it working:
-  window.finishLevel = function finishLevel() {
-    window.location.href = "../index.html"; // back to phonology level list
-  };
+window.finishLevel = function finishLevel() {
+  window.location.href = "../level-2/index.html";
+};
 });
 
 
