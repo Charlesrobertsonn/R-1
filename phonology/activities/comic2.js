@@ -1,146 +1,136 @@
-/* Activity-only styles. Layout/nav handled by level.css */
+/* phonology/activities/comic2.js */
 
-.comic-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin: 10px auto 0;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const comicGrid = document.getElementById("comic-grid");
+  const pageNumber = document.getElementById("page-number");
+  const quizSection = document.getElementById("quiz-section");
+  const quizResult = document.getElementById("quiz-result");
+  const finishWrapper = document.getElementById("finishWrapper");
 
-.comic-panel {
-  background: rgba(17,24,39,0.06);
-  border: 1px solid rgba(17,24,39,0.10);
-  border-radius: 14px;
-  padding: 10px;
-  cursor: pointer;
-  user-select: none;
-  transition: transform .12s ease, filter .12s ease, background .12s ease;
-}
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-.comic-panel:hover {
-  background: rgba(17,24,39,0.09);
-  transform: translateY(-1px);
-}
+  // Comic pages data
+  const comicPages = [
+    [
+      { text: "Tam has a cat.", img: "https://via.placeholder.com/150" },
+      { text: "The cat is on the mat.", img: "https://via.placeholder.com/150" },
+      { text: "Naf taps the cat.", img: "https://via.placeholder.com/150" },
+      { text: "The cat runs to Sab.", img: "https://via.placeholder.com/150" },
+      { text: "Sab pets the cat.", img: "https://via.placeholder.com/150" },
+      { text: "The cat sits in Sab’s lap.", img: "https://via.placeholder.com/150" }
+    ],
+    [
+      { text: "The dog sees the cat.", img: "https://via.placeholder.com/150" },
+      { text: "The cat jumps up high.", img: "https://via.placeholder.com/150" },
+      { text: "Sab calls the cat down.", img: "https://via.placeholder.com/150" },
+      { text: "The dog sniffs the cat.", img: "https://via.placeholder.com/150" },
+      { text: "The cat and dog become friends.", img: "https://via.placeholder.com/150" },
+      { text: "Sab smiles at the cat and dog.", img: "https://via.placeholder.com/150" }
+    ],
+    [
+      { text: "Sab gives the cat some food.", img: "https://via.placeholder.com/150" },
+      { text: "The dog also gets food.", img: "https://via.placeholder.com/150" },
+      { text: "They both eat happily.", img: "https://via.placeholder.com/150" },
+      { text: "Sab plays with the cat.", img: "https://via.placeholder.com/150" },
+      { text: "Sab takes the dog on a walk.", img: "https://via.placeholder.com/150" },
+      { text: "A happy day for everyone!", img: "https://via.placeholder.com/150" }
+    ]
+  ];
 
-.comic-panel:active {
-  transform: translateY(0);
-  filter: brightness(0.98);
-}
+  let currentPage = 0;
 
-.comic-panel img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 12px;
-  background: rgba(17,24,39,0.12);
-  display: block;
-}
+  function speakText(text) {
+    // Use shared helper if available
+    if (typeof window.safeSpeak === "function") {
+      window.safeSpeak(text, { lang: "en-US", rate: 0.9 });
+      return;
+    }
 
-.comic-panel p {
-  margin: 10px 0 0;
-  font-weight: 800;
-  font-size: 15px;
-  color: #111827;
-}
+    // Fallback
+    if (!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
+  }
 
-.nav-container {
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+  function renderComicPage() {
+    comicGrid.innerHTML = "";
 
-.page-number {
-  font-weight: 800;
-  color: rgba(17,24,39,0.70);
-}
+    comicPages[currentPage].forEach((panel) => {
+      const panelDiv = document.createElement("div");
+      panelDiv.className = "comic-panel";
+      panelDiv.setAttribute("role", "button");
+      panelDiv.setAttribute("tabindex", "0");
+      panelDiv.setAttribute("aria-label", `Speak: ${panel.text}`);
 
-/* Quiz */
-.quiz-section {
-  display: none;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(17,24,39,0.10);
-}
+      panelDiv.innerHTML = `
+        <img src="${panel.img}" alt="Comic panel image">
+        <p>${panel.text}</p>
+      `;
 
-.quiz-section h2 {
-  margin: 0 0 8px;
-  font-size: 18px;
-}
+      const activate = () => speakText(panel.text);
 
-.quiz-question {
-  margin: 0 0 10px;
-  font-weight: 700;
-}
+      panelDiv.addEventListener("click", activate);
+      panelDiv.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          activate();
+        }
+      });
 
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
+      comicGrid.appendChild(panelDiv);
+    });
 
-.quiz-result {
-  margin-top: 12px;
-  font-weight: 800;
-}
+    pageNumber.textContent = `Page ${currentPage + 1} of ${comicPages.length}`;
 
-/* Finish */
-.finish-wrapper {
-  display: none; /* shown on last page by JS */
-  margin-top: 18px;
-  justify-content: center;
-}
+    const isLastPage = currentPage === comicPages.length - 1;
+    quizSection.style.display = isLastPage ? "block" : "none";
+    finishWrapper.style.display = isLastPage ? "flex" : "none";
 
-/* Buttons (local utilities, like read-rally/spell-bound) */
-.c-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-weight: 800;
-  font-size: 14px;
-  text-decoration: none;
-  border: 1px solid rgba(17,24,39,0.10);
-  cursor: pointer;
-  transition: transform .12s ease, filter .12s ease;
-  background: rgba(17,24,39,0.06);
-  color: #111827;
-}
+    // Optional: disable nav buttons at ends (nice UX)
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = isLastPage;
 
-.c-btn:active {
-  transform: translateY(1px);
-  filter: brightness(0.98);
-}
+    // Clear quiz feedback when leaving/entering last page
+    if (!isLastPage) quizResult.textContent = "";
+  }
 
-.c-btn-primary {
-  background: #2563eb;
-  color: #fff;
-  border-color: rgba(255,255,255,0.25);
-}
+  function nextPage() {
+    if (currentPage < comicPages.length - 1) {
+      currentPage++;
+      renderComicPage();
+    }
+  }
 
-.c-btn-success {
-  background: #2e9e53;
-  color: #fff;
-  border-color: rgba(255,255,255,0.25);
-}
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      renderComicPage();
+    }
+  }
 
-.c-btn-secondary {
-  background: rgba(17,24,39,0.06);
-  color: #111827;
-  border-color: rgba(17,24,39,0.10);
-}
+  function checkAnswer(answer) {
+    if (answer === "C") {
+      quizResult.textContent = "✅ Correct! Sab petted the cat.";
+      quizResult.style.color = "#2e9e53";
+    } else {
+      quizResult.textContent = "❌ Incorrect! Try again.";
+      quizResult.style.color = "#ef4444";
+    }
+  }
 
-/* Responsive */
-@media (max-width: 820px) {
-  .comic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
+  // Wire up buttons
+  prevBtn?.addEventListener("click", prevPage);
+  nextBtn?.addEventListener("click", nextPage);
 
-@media (max-width: 520px) {
-  .comic-grid { grid-template-columns: 1fr; }
-  .comic-panel img { height: 160px; }
-}
+  document.querySelectorAll(".quiz-btn").forEach((btn) => {
+    btn.addEventListener("click", () => checkAnswer(btn.dataset.answer));
+  });
+
+  // Initial render
+  renderComicPage();
+});
+
