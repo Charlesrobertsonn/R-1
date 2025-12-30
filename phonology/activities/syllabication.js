@@ -1,5 +1,8 @@
 // syllabication.js
-// Keeps the exact behaviour you had, just moved out of HTML.
+// Keeps the exact behaviour you had, with a couple of improvements:
+// - Finish Level 1 button is wired via addEventListener (no HTML change needed)
+// - Speech cancels before speaking (cleaner on repeated clicks)
+// - Minor safety checks and tidy structure
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- Two-page navigation ---
@@ -86,6 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Text-to-speech for word tiles ---
   function readWord(word) {
     if (!("speechSynthesis" in window)) return;
+
+    // Improvement: cancel current speech so repeated clicks feel responsive
+    window.speechSynthesis.cancel();
+
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = "en-AU";
     utterance.rate = 0.9;
@@ -96,9 +103,19 @@ document.addEventListener("DOMContentLoaded", () => {
     wordEl.addEventListener("click", () => readWord(wordEl.textContent.trim()));
   });
 
-window.finishLevel = function finishLevel() {
-  window.location.href = "../level-2/index.html";
-};
+  // --- Finish Level 1 (NO HTML change needed) ---
+  const finishBtn = document.getElementById("finishBtn");
+  if (finishBtn) {
+    finishBtn.addEventListener("click", () => {
+      window.location.href = "../level-2/index.html";
+    });
+  }
+
+  // Optional backwards compatibility:
+  // If any older HTML still calls finishLevel(), keep it working.
+  window.finishLevel = function finishLevel() {
+    window.location.href = "../level-2/index.html";
+  };
 });
 
 
